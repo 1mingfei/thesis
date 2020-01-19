@@ -1,0 +1,208 @@
+% The packages used here are just a sample. You may need others, and may not need some of these. It doesn't hurt to leave them in, unless they start to conflict with other packages you've added. Chapter 2 has example code for equations, figures, tables, citations, abbreviations, etc. If there are sections labeled 'optional' that you don't want, just comment them out. -jg
+
+\documentclass[reqno,12pt,oneside]{report} % right-side equation numbering, 12 point font, print one-sided 
+%\documentclass[reqno,12pt,twoside,openright]{report} % right-side equation numbering, 12 point font, print two-sided, Chapters start on odd pages. Rackham only accepts one-sided, so this is for personal printings.
+
+\usepackage{rac}         % Use Rackham thesis style file
+\usepackage{aas_macros}  % To allow the reading of ADS journal references in the bibliography
+\usepackage[intlimits]{amsmath} % Puts the limits of integrals on top and bottom
+\usepackage{amsxtra}     % Use various AMS packages
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}% bold math
+\usepackage{amsfonts}
+\usepackage{graphicx}    % Add some packages for figures. Read epslatex.pdf on ctan.tug.org
+\usepackage{rotating}
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{subfigure}   % To make subfigures. Read subfigure.pdf on ctan.tug.org
+\usepackage{verbatim}
+\usepackage{natbib}      % Allows you to use BibTeX
+\usepackage[printonlyused]{acronym} % For the List of Abbreviations. Read acronym.pdf on ctan.tug.org
+\usepackage{setspace}    % Allows you to specify the line spacing
+\doublespacing           % \onehalfspacing for 1.5 spacing, \doublespacing for 2.0 spacing.
+\newcommand{\sun}{\ensuremath{\odot}} % sun symbol is \sun
+\newcommand{\angstrom}{\mbox{\normalfont\AA}} %for angstrom symbol
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Various theorem environments. All of the following have the same numbering
+% system as theorem.
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{introduction}[theorem]{Introduction}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\numberwithin{theorem}{chapter}     % Numbers theorems "x.y" where x
+                                    % is the section number, y is the
+                                    % theorem number
+
+%\renewcommand{\thetheorem}{\arabic{chapter}.\arabic{theorem}}
+
+%\makeatletter                      % This sequence of commands will
+%\let\c@equation\c@theorem          % incorporate equation numbering
+%\makeatother                       % into the theorem numbering scheme
+
+%\renewcommand{\theenumi}{(\roman{enumi})}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% If printing two-sided, this makes sure that any blank page at the 
+% end of a chapter will not have a page number. 
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%This command creates a box marked ``To Do'' around text.
+%To use type \todo{  insert text here  }.
+
+\newcommand{\todo}[1]{\vspace{5 mm}\par \noindent
+\marginpar{\textsc{To Do}}
+\framebox{\begin{minipage}[c]{0.95 \textwidth}
+\tt\begin{center} #1 \end{center}\end{minipage}}\vspace{5 mm}\par}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareUnicodeCharacter{2212}{-} %WARNING WARNING added by Mingfei
+\overfullrule=0pt %WARNING WARNING added by Mingfei
+
+\usepackage[]{graphicx}
+\usepackage{lineno}
+\usepackage[caption=false]{subfig}
+
+\begin{document}
+
+\bibliographystyle{agu04}    % Set the bibliography style. agu04, plain, alpha, etc. Original Rackham
+%\bibliographystyle{alpha}    % Set the bibliography style. agu04, plain, alpha, elsarticle-num-names, etc.
+
+% Title page as required by Rackham dissertation guidelines
+\titlepage{Atomistic simulations of thermodynamics and kinetics related to advanced alloy processing}{Mingfei Zhang}{Doctor of Philosophy}
+{Materials Science and Engineering}{2020}
+{Assistant Professor Liang Qi, Chair\\
+ Professor Amit Misra\\
+ Associate Professor Emmanouil Kioupakis\\
+ Professor Fei Gao}
+
+% Begin the front matter as required by Rackham dissertation guidelines
+\initializefrontsections
+
+% Optional Frontispiece
+%\frontispiece{\includegraphics[width=6in]{Intro/Happy} Find a cool picture to go here.}
+
+% Optional, but recommended, Copyright page
+%\copyrightpage{Your Name}
+
+% Page numbering. If you don't include a frontispiece or copyright page, you'll need to change this for two-sided printing.
+\makeatletter
+\if@twoside \setcounter{page}{4} \else \setcounter{page}{1} \fi
+\makeatother
+ 
+% Optional Dedication page
+\dedicationpage{Dedicated to my family.}
+
+% Optional Acknowledgements page
+\startacknowledgementspage
+\input{Acknowledgements}
+\label{Acknowledgements}
+
+% Optional Preface page
+%\startprefacepage
+%\input{Preface}
+%\label{Preface}
+
+% Table of contents, list of figures, etc.
+\tableofcontents     % Required
+\listoffigures       % Required if there is more than one figure
+\listoftables        % Required if there is more than one table
+%\listofmaps          % Required if there is more than one map
+\listofappendices    % Required if there is more than one appendix
+\listofabbreviations % Optional. Abbreviations should be stored in a file named abbr.tex
+
+% Optional in-dissertation Abstract Page
+\startabstractpage
+{Atomistic simulations of thermodynamics and kinetics related to advanced alloy processing}{Mingfei Zhang}{Chair: Liang Qi}
+\input{Abstract/Abstract}
+\label{Abstract}
+
+\startthechapters 
+% The individual files for each of the chapters are put here.
+% Save each chapter of your thesis to a seperate tex file
+% and then use the \input command to include this file in your
+% thesis.  For instance you can save a file to "intro.tex" and 
+% then type \input{intro}. 
+
+ \chapter{Introduction}
+ \label{chap:Intro}
+ \input{Intro/Intro}
+
+ \chapter{Methods}
+ \label{chap:Methods}
+ \input{Methods/Methods}
+ 
+ \chapter{formatting reference chapter}
+ \label{chap:format}
+ \input{format/format}
+
+ \chapter{Electronic Mechanism of H adsorptions on ZnO Surfaces}
+ \label{chap:ZnO_H}
+ \input{Chap1/chap1}
+ 
+ \chapter{Alloy segregations in Ag grain boundaries}
+ \label{chap:Ag_W}
+ \input{Chap2/chap2}
+ 
+ \chapter{Dopants in Mg to enhance its corrosion resistance}
+ \label{chap:Mg_H}
+ \input{Chap3/chap3}
+ 
+ \chapter{Grand Canonical Monte Carlo simulations of Ag thin film depositions}
+ \label{chap:Ag/ZnO}
+ \input{Chap4/chap4}
+ 
+ \chapter{Kinetic Monte Carlo simulations of Solute Clustering in multi-component Al alloys}
+ \label{chap:Al/Vac}
+ \input{Chap5/chap5}
+ 
+ \chapter{Conclusion}
+ \label{chap:Conc}
+ \input{Conc/Conc}
+ 
+\startappendices
+ \appendix{blah blah blah}
+ \label{app:CN Scheme}
+ \input{Appendices/Appendix_Open_Flux}
+ 
+\startbibliography
+ \begin{singlespace} % Bibliography must be single spaced
+  \bibliography{References}   % Use the BibTeX file ``References.bib''.
+ \end{singlespace}
+
+% An external Abstract that can be printed at the end of the document, 
+% for separate submission to Rackham. Comment it out when not needed. - jg
+%\startextabstractpage
+%{The Title of Your Dissertation}{Your Name}{Chair: Albert Einstein}
+%\input{Abstract/Abstract}
+%\label{ExtAbstract}
+
+\end{document}
