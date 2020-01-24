@@ -8,14 +8,14 @@ The second and third criteria require the investigation of specific Fe surfaces.
 \begingroup
 \begin{figure}[!ht]
   \centering
-  \subfigure{\includegraphics[width=0.9\linewidth]{Chap3/Fig4.png}}
+  \subfigure{\includegraphics[width=0.9\linewidth]{Chap3/plots/Fig4.png}}
   \caption[Summary of the high-throughput search for alloying elements that can inhibit HER on surfaces of Fe second-phase particles in Mg matrix]{Summary of the high-throughput search for alloying elements that can inhibit \ac{HER} on surfaces of Fe second-phase particles in Mg matrix. All investigated alloying elements are labeled in colors (blue, yellow, red and green). Different colors describe the search results for the corresponding alloying elements as explained in the figure legends. (White periodic table from Wikimedia Commons)}
   \label{Chap:Mg_H:fig4}
 \end{figure}
 \endgroup
 
-\section{First-principles calculation methods and high-throughput search approach}
-\label{chap:Mg_H:sec:calculation}
+% \section{First-principles calculation methods and high-throughput search approach}
+% \label{chap:Mg_H:sec:calculation}
 
 The first criterion requires that a Mg corrosion-inhibiting element must have a thermodynamic preference for bulk Fe over bulk Mg. Hence, models aimed at examining bulk segregation energetics were constructed. To simulate bulk Fe, we constructed a 4x4x4(64 atoms) supercell (each primitive cell consists of 1 Fe atom). To simulate bulk Mg, we constructed a 4x4x2 supercell (64 atoms) with each primitive cell consisting of 2 Mg atoms. An element (e.g. As) was then placed at an Fe substitutional site in the bulk Fe supercell and at a Mg substitutional site in the Mg bulk supercell, as shown in Figs. 2(a) and 2(b), respectively.
 
@@ -24,14 +24,14 @@ To address the second criterion (an element must have a thermodynamic preference
 \begingroup
 \begin{figure}[!ht]
   \centering
-  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/Fig5a.pdf}}\label{Chap:Mg_H:fig:5a}
-  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/Fig5b.pdf}}\label{Chap:Mg_H:fig:5b}
+  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/plots/Fig5a.pdf}}\label{Chap:Mg_H:fig:5a}
+  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/plots/Fig5b.pdf}}\label{Chap:Mg_H:fig:5b}
   \\
-  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/Fig5c.pdf}}\label{Chap:Mg_H:fig:5c}
-  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/Fig5d.pdf}}\label{Chap:Mg_H:fig:5d}
+  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/plots/Fig5c.pdf}}\label{Chap:Mg_H:fig:5c}
+  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/plots/Fig5d.pdf}}\label{Chap:Mg_H:fig:5d}
   \\
-  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/Fig5e.pdf}}\label{Chap:Mg_H:fig:5e}
-  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/Fig5f.pdf}}\label{Chap:Mg_H:fig:5f}
+  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/plots/Fig5e.pdf}}\label{Chap:Mg_H:fig:5e}
+  \subfigure[]{\includegraphics[width=0.4\linewidth]{Chap3/plots/Fig5f.pdf}}\label{Chap:Mg_H:fig:5f}
 \caption[Segregation energies to bulk second-phase particles]{Segregation energies to bulk second-phase particles $E_{particle seg}$ defined in Eq. \ref{Chap:Mg_H:eq:particle_seg} for the 68 potential alloying elements. Preference for a \ac{BCC} Fe particle over the bulk \ac{HCP} Mg requires that an alloying element should have a significantly negative value of $E_{particle seg}$. (a)~(e): Elements in Row 2, 3, 4, 5 and 6 of the periodic table, respectively. (f) Lanthanide Elements. Elements with negative Eparticle seg are narrowed to 24: Be, B, Al, Si, P, Ti, V, Cr, Mn, Co, Ni, Ga, Ge, As, Zr, Nb, Mo, Tc, Ru, Hf, Ta, W, Re and Os.}
   \label{Chap:Mg_H:fig5}
 \end{figure}
@@ -46,11 +46,11 @@ Two successive structural optimizations (adapting basis vectors and computationa
 \begingroup
 \begin{figure}[!ht]
   \centering
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig6a.pdf}}\label{Chap:Mg_H:fig:6a}
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig6b.pdf}}\label{Chap:Mg_H:fig:6b}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig6a.pdf}}\label{Chap:Mg_H:fig:6a}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig6b.pdf}}\label{Chap:Mg_H:fig:6b}
   \\
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig6c.pdf}}\label{Chap:Mg_H:fig:6c}
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig6d.pdf}}\label{Chap:Mg_H:fig:6d}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig6c.pdf}}\label{Chap:Mg_H:fig:6c}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig6d.pdf}}\label{Chap:Mg_H:fig:6d}
 \caption[Surface segregation energies for Fe (100) of 24 alloying elements]{Segregation energies $E_{surf seg}$ defined in Eq. \ref{Chap:Mg_H:eq:surf_seg} for Fe (100) of 24 alloying elements narrowed from the first screening round. A qualified alloy candidate should have a strongly negative value of $E_{surf seg}$. (a): Elements in Row 2 and 3 of the periodic table. (b)~(d): Elements in Row of 4, 5 and 6 of the periodic table, respectively.}
   \label{Chap:Mg_H:fig6}
 \end{figure}
@@ -58,7 +58,6 @@ Two successive structural optimizations (adapting basis vectors and computationa
 
 Other than H adsorption energetics, there are two other criteria that are important as mentioned in Section 2.1: (1) an alloying element X should be more thermodynamically stable in bulk \ac{BCC} Fe instead of bulk \ac{HCP} Mg, (2) an alloying element X should segregate to an Fe surface rather than remaining in bulk Fe. Regarding the first criterion, we calculated the segregation energy to the second-phase particle, $E_{particle seg}$, via
 \begin{align}
-%Eparticle seg  =  (63/64EMg64 + EFe63X) - (EMg63X + 63/64EFe64) (6)
  E_{particle seg} = (\frac{63}{64}E_{Mg64} + E_{Fe63}X) - (E_{Mg63}X + \frac{63}{64}E_{Fe64})
  \label{Chap:Mg_H:eq:particle_seg}
 \end{align}
@@ -67,11 +66,11 @@ where $E_{Mg64}$, $E_{Fe63X}$, $E_{Mg63X}$, and $E_{Fe64}$ are the total energie
 \begingroup
 \begin{figure}[!ht]
   \centering
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig7a.pdf}}\label{Chap:Mg_H:fig:7a}
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig7b.pdf}}\label{Chap:Mg_H:fig:7b}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig7a.pdf}}\label{Chap:Mg_H:fig:7a}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig7b.pdf}}\label{Chap:Mg_H:fig:7b}
   \\
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig7c.pdf}}\label{Chap:Mg_H:fig:7c}
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig7d.pdf}}\label{Chap:Mg_H:fig:7d}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig7c.pdf}}\label{Chap:Mg_H:fig:7c}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig7d.pdf}}\label{Chap:Mg_H:fig:7d}
 \caption[Surface segregation energies for Fe (110) of 24 alloying elements]{Segregation energies $E_{surf seg}$ defined in Eq. \ref{Chap:Mg_H:eq:surf_seg} for Fe (110) of 24 alloying elements narrowed from the first screening round. A qualified alloy candidate should have a strongly negative value of $E_{surf seg}$. (a): Elements in Row 2 and 3 of the periodic table. (b)~(d): Elements in Row of 4, 5 and 6 of the periodic table, respectively.}
   \label{Chap:Mg_H:fig7}
 \end{figure}
@@ -79,7 +78,6 @@ where $E_{Mg64}$, $E_{Fe63X}$, $E_{Mg63X}$, and $E_{Fe64}$ are the total energie
 
 Regarding the second criterion, we calculated the surface segregation energy of a substitutional alloying atom, $E_{surf seg}$, via:
 \begin{align}
- %Esurf seg = Esurf - Ebulk                          (7)
  E_{surf seg} = E_{surf} - E_{bulk}
  \label{Chap:Mg_H:eq:surf_seg}
 \end{align}
@@ -87,7 +85,6 @@ where $E_{surf}$ and $E_{bulk}$ are the \ac{DFT}-computed energies of the corres
 
 The H adsorption energy, $E_{ad}^H$, was computed from  
 \begin{align}
- %EadH = EH/slab - Eslab - 0.5EH2(g)      (8)
  E_{ad}^{H} = E_{H/slab} - E_{slab} - \frac{1}{2}E_{H_2}(g)
  \label{Chap:Mg_H:eq:H_ads}
 \end{align}
@@ -97,8 +94,8 @@ where $E_{H/slab}$ and $E_{slab}$ are the total energies of supercells of an Fe 
 \begingroup
 \begin{figure}[!ht]
   \centering
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig8a.pdf}}\label{Chap:Mg_H:fig:8a}
-  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/Fig8b.pdf}}\label{Chap:Mg_H:fig:8b}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig8a.pdf}}\label{Chap:Mg_H:fig:8a}
+  \subfigure[]{\includegraphics[width=0.45\linewidth]{Chap3/plots/Fig8b.pdf}}\label{Chap:Mg_H:fig:8b}
 \caption[H adsorption energies on Fe (100) and Fe (110) with the 13 alloying elements that pass the second screening round]{H adsorption energies $E_{ad}^H$ defined in Eq. \ref{Chap:Mg_H:eq:H_ads} on Fe (100) and Fe (110) with the 13 alloying elements that pass the second screening round.  (a) H adsorption energies at the hollow site and the top site on Fe (100) with different alloying elements. Their surface geometry is shown in Fig. \ref{Chap:Mg_H:fig:3a}. The horizontal solid and dash lines are the hydrogen adsorption energy at hollow site and top site of pure Fe (100), respectively. (b) H adsorption energies at the hollow site I and the top site on Fe (110) with different alloying elements. Their surface geometry is shown in Fig. \ref{Chap:Mg_H:fig:3b}. The horizontal solid and dash lines are the hydrogen adsorption energy at hollow site I and top site on a pure Fe surface, respectively. H adsorption energies at the hollow site I on Fe (110) surfaces with B, Al, Si, P, Ti, Ga, Ge, As, Zr, Nb and Hf (marked with *) were computed by only allowing H and surface atoms to relax in the direction normal to the Fe (110).}
   \label{Chap:Mg_H:fig8}
 \end{figure}
