@@ -3,6 +3,7 @@
 
 The computational engine that provided the energetics used to evaluate energy differences and activation barriers before and after vacancy jump in Al 7075 alloy was the implementation of \ac{DFT} together with climbing image \acf{NEB} in the \ac{VASP} software with VTST package from Henkelman's group \cite{henkelman2000climbing,henkelman2000improved}. All-electron \ac{PAW} potentials were employed for the elemental constituents with the \ac{GGA} of \ac{PBE} for the exchange-correlation energy functional, $\mu_{xc}$, and the interpolation formula of Vosko et al. \cite{vosko1980accurate}. Using plane-wave cutoff energy of at 450.0 eV, the total energy for all models of initial and final images was converged to $10^{−7}$ eV/cell. The reciprocal space of bulk supercells was sampled with (2x2x2) k-point grids. Each grid was generated using the Monkhorst-Pack scheme \cite{monkhorst1976special}. A (4x4x4) conventional supercell with a single vacancy embedded was used for these calculations. For activation barrier calculations, 5 images between relaxed initial and final images were used. A spring constant was set to 5 $\text{eV}/\angstrom^2$. The force convergence criteria for all models was set to be less than 0.05 $\text{eV}/\angstrom$. The force-based quick-min optimizer was used to make \ac{NEB} calculations stable for high local concentration cases. \cite{sheppard2008optimization}
 
+
 To sample a larger potential energy landscape, our \ac{NN} model training set contains mainly two different parts, as shown in Fig. \ref{Chap:Al/Vac:fig:atomic_illu}: 1) (4x4x4) randomly generated solid-solution structures with different local concentrations around jump pairs. 2) (2x2x2) randomly generated ordered structures embedded in (4x4x4) pure Al. The first training set is good for simulating vacancy diffusion of a very early stage, during which Al alloy is in the solid-solution state. The second training set is designed to accurately describe the behavior of vacancy moving across/along the boundary between solid-solution Al and ordered phases, and moving inside the ordered phases. The atomic structures of ordered phases are chosen from proposed GP zone structures from \cite{berg2001gp} and low energy ordered $\text{L1}_\text{0}, \text{L1}_\text{2}, \text{L1}_\text{0}^*, \text{W2}, \text{CH}, \text{L1}_\text{2}^*, \text{Z1}$ structures of Au-Fe from \cite{zhuravlev2017phase} with random species perturbation. 
 
 
@@ -16,9 +17,12 @@ To sample a larger potential energy landscape, our \ac{NN} model training set co
 \end{figure}
 \endgroup
 
+
 Many different machine learning/deep learning models are widely used, each one suitable for a different kind of problem. \cite{bartok2010gaussian,behler2011atom,szlachta2014accuracy,artrith2016implementation,mehta2014exact,artrith2017efficient} For our particular problem, the feed-forward Artificial Neural Network (ANN) is chosen, as it provides a general frame to map non-linear input (atomic species of neighboring environment) to a continuous regressor (diffusion barriers). It is well known that a sufficiently large number of hidden neurons can approximate any continuous multivariate function. \cite{hornik1989multilayer} This property gives us the most expandability of this framework when the system needs to go even further complicated in terms of the number of species considered. 
 
-The output layer of our \ac{NN} model predicts diffusion barriers in a 1-D continuous space. The input layer is chosen to be 27 discrete numbers representing atom species, as shown in Table. \ref{Chap:Al/Vac:tab:mapping}. Among the 27 numbers, the first one indicates the type of atom that will be swap with the vacancy. The rest 26 (each atom has 12 + 6 = 18 $\text{2}^{nd}$ nearest neighbors. And both of them share 10 in common.) atoms represents the neighboring atoms of the jump pair up to their $\text{2}^{nd}$ nearest neighbors, as shown in Fig. \ref{Chap:Al/Vac:fig:2nn}. These 26 numbers are arranged in their geographical order (ascending in X, Y, and Z accordingly), so their position will always respond to the same input neuron in the \ac{NN} architecture. Besides, this cluster of 26 neighboring atoms also has 2-fold symmetry, mirror symmetry along Y-Z plane, and mirror symmetry along the X-Y plane. Therefore, for one jumping event, the diffusion barrier is taken as the average of the four symmetric configurations of the 26 neighboring atoms to have a symmetry-invariant prediction.
+
+The output layer of our \ac{NN} model predicts diffusion barriers in a 1-D continuous space. The input layer was chosen to be 27 discrete numbers representing atom species, as shown in Table. \ref{Chap:Al/Vac:tab:mapping}. Among the 27 numbers, the first one indicates the type of atom that will be swap with the vacancy. The rest 26 (each atom has 12 + 6 = 18 $\text{2}^{nd}$ nearest neighbors. And both of them share 10 in common.) atoms represents the neighboring atoms of the jump pair up to their $\text{2}^{nd}$ nearest neighbors, as shown in Fig. \ref{Chap:Al/Vac:fig:2nn}. These 26 numbers are arranged in their geographical order (ascending in X, Y, and Z accordingly), so their position will always respond to the same input neuron in the \ac{NN} architecture. Besides, this cluster of 26 neighboring atoms also has 2-fold symmetry, mirror symmetry along Y-Z plane, and mirror symmetry along the X-Y plane. Therefore, for one jumping event, the diffusion barrier is taken as the average of the four symmetric configurations of the 26 neighboring atoms to have a rotation-invariant prediction. By using several layers of hidden neurons between 27 input species and 1 output diffusion barrier, the contribution distribution to final ouput, diffusion barrier, of pair-wise and triple-wise interactions can be learned.
+
 
 \begin{table}[!htbp]
 \centering
@@ -38,17 +42,59 @@ Vac & 4.0 \\
 \end{tabular}
 \end{table}
 
+
 \begingroup
 \begin{figure}[!ht]
   \centering
   \subfigure{\includegraphics[width=0.5\linewidth]{Chap5/plots/2nn.png}}
-\caption[Illustration of atomic structures of the $\text{2}^{nd}$ nearest neighbors surrounding the jumping pairs.]{Illustration of atomic structures of the $\text{2}^{nd}$ nearest neighbors surrounding the jumping pairs.}
+\caption[Illustration of atomic structures of the $\text{2}^{nd}$ nearest neighbors surrounding the jumping pairs.]{Illustration of atomic structures of the $\text{2}^{nd}$ nearest neighbors surrounding the jumping pairs. The 26 neighboring atoms have 2-fold symmetry, mirror symmetry along Y-Z plane, and mirror symmetry along the X-Y plane.}
 \label{Chap:Al/Vac:fig:2nn}
 \end{figure}
 \endgroup
 
 
-\newpage
+We implemented the \ac{NN} model using Google's TensorFlow \cite{abadi2016tensorflow} with Keras \cite{chollet2015keras}. TensorFlow is an open source numerical computation framework using data flow graphs with the ability of deriving gradients automatically. Keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow. The optimized neural network structures was tuned by Talos \cite{Autonomio2019Talos}. The Adam optimizer \cite{kingma2014adam} was used for optimizing weights in the neural network. Xavier uniform initializer \cite{glorot2010understanding} was used to generate the random weights and biases so as to break the symmetry of weighting parameters. The activation functions were chosen to be \acf{ReLu}. The optimized \ac{NN} architecture can be found in Table. \ref{Chap:Al/Vac:tab:NN}.
+
+
+\begin{table}[!htbp]
+\centering
+\caption[Neural network architecture with activation functions and dropout probability of each layer.]{Neural network architecture with activation functions and dropout probability of each layer.}
+\label{Chap:Al/Vac:tab:NN}
+\begin{tabular}{cccc}
+\\
+\hline
+\hline
+Layer & Shape & Activation & Dropout Probability \\ 
+\hline
+Dense & 80    & ReLu       & 0.15                \\
+Dense & 40    & ReLu       & 0.1                 \\
+Dense & 40    & ReLu       & 0.0                 \\
+Dense & 20    & ReLu       & 0.0                 \\
+Dense & 10    & ReLu       & 0.0                 \\
+Dense & 1     & Linear     & N.A.                \\ 
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+
+To train the \ac{NN}, two different objective functions are used. The former one is the common \acf{MSE} via:
+\begin{subequations}
+\begin{align}
+MSE = \frac{1}{N}\sum_{i=1}^{N}({E_a}_{i}^{DFT} - {E_a}_{i}^{NN})^2
+\label{Chap:Al/Vac:eq:MSE}
+\end{align}
+\end{subequations}
+where $N$ is the number of input datas, which can be trained in batch or mini-batch, ${E_a}_i^{DFT}$ is the diffusion barrier of $i^{\text{th}}$ data from \ac{DFT} calculation, and ${E_a}_{i}^{NN}$ is from \ac{NN} prediction. The latter one is a customized loss function, via:
+\begin{subequations}
+\begin{align}
+Loss = \frac{1}{N}\sum_{i=1}^{N}{(1.0 + \alpha (1.5 - {E_a}_{i}^{DFT})({E_a}_{i}^{DFT} - {E_a}_{i}^{NN})^2)}
+\label{Chap:Al/Vac:eq:custLoss}
+\end{align}
+\end{subequations}
+where $\alpha$ is a tunable knob. A larger $\alpha$ value will weigh more on diffusion barriers that are small. In this way, we are able to fit low-energy barriers more accurately, as they are the critical rate-determining steps in a \ac{KMC} simulation.
+
+
 \begingroup
 \begin{figure}[!ht]
   \centering
