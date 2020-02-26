@@ -4,7 +4,7 @@
 The computational engine that provided the energetics used to evaluate energy differences and activation barriers before and after vacancy jump in Al 7075 alloy was the implementation of \ac{DFT} together with climbing image \acf{NEB} in the \ac{VASP} software with VTST package from Henkelman's group \cite{henkelman2000climbing,henkelman2000improved}. All-electron \ac{PAW} potentials were employed for the elemental constituents with the \ac{GGA} of \ac{PBE} for the exchange-correlation energy functional, $\mu_{xc}$, and the interpolation formula of Vosko et al. \cite{vosko1980accurate}. Using plane-wave cutoff energy of at 450.0 eV, the total energy for all models of initial and final images was converged to $10^{−7}$ eV/cell. The reciprocal space of bulk supercells was sampled with (2x2x2) k-point grids. Each grid was generated using the Monkhorst-Pack scheme \cite{monkhorst1976special}. A (4x4x4) conventional supercell with a single vacancy embedded was used for these calculations. For activation barrier calculations, 5 images between relaxed initial and final images were used. A spring constant was set to 5 $\text{eV}/\angstrom^2$. The force convergence criteria for all models was set to be less than 0.05 $\text{eV}/\angstrom$. The force-based quick-min optimizer was used to make \ac{NEB} calculations stable for high local concentration cases. \cite{sheppard2008optimization}
 
 
-To sample a larger potential energy landscape, our \ac{NN} model training set contains mainly two different parts, as shown in Fig. \ref{Chap:Al/Vac:fig:atomic_illu}: 1) (4x4x4) randomly generated solid-solution structures with different local concentrations around jump pairs. 2) (2x2x2) randomly generated ordered structures embedded in (4x4x4) pure Al. The first training set is good for simulating vacancy diffusion of a very early stage, during which Al alloy is in the solid-solution state. The second training set is designed to accurately describe the behavior of vacancy moving across/along the boundary between solid-solution Al and ordered phases, and moving inside the ordered phases. The atomic structures of ordered phases are chosen from proposed GP zone structures from \cite{berg2001gp} and low energy ordered $\text{L1}_\text{0}, \text{L1}_\text{2}, \text{L1}_\text{0}^*, \text{W2}, \text{CH}, \text{L1}_\text{2}^*, \text{Z1}$ structures of Au-Fe from \cite{zhuravlev2017phase} with random species perturbation. 
+To sample a larger potential energy landscape, our \ac{NN} model training set contains mainly two different parts, as shown in Fig. \ref{Chap:Al/Vac:fig:atomic_illu}: 1) (4x4x4) randomly generated solid-solution structures with different local concentrations around jump pairs. 2) (2x2x2) randomly generated ordered structures embedded in (4x4x4) pure Al. The first training set is good for simulating vacancy diffusion of a very early stage, during which Al alloy is in the solid-solution state. The second training set is designed to accurately describe the behavior of vacancy moving across/along the boundary between solid-solution Al and ordered phases, and moving inside the ordered phases. The atomic structures of ordered phases are chosen from proposed GP zone structures from \cite{berg2001gp} and low energy ordered $\text{L1}_\text{0}, \text{L1}_\text{2}, \text{L1}_\text{0}^*, \text{W2}, \text{CH}, \text{L1}_\text{2}^*, \text{Z1}$ structures of Au-Fe from \cite{zhuravlev2017phase} with random species perturbation. The atomic  structures were generated using our in-house code KNN2. \cite{Zhang2020KNN2}
 
 
 \begingroup
@@ -64,35 +64,36 @@ We implemented the \ac{NN} model using Google's TensorFlow \cite{abadi2016tensor
 \\
 \hline
 \hline
-Layer & Shape & Activation & Dropout Probability \\ 
+Layer & Shape  & Activation  & Dropout Probability\\ 
 \hline
-Dense & 80    & ReLu       & 0.15                \\
-Dense & 40    & ReLu       & 0.1                 \\
-Dense & 40    & ReLu       & 0.0                 \\
-Dense & 20    & ReLu       & 0.0                 \\
-Dense & 10    & ReLu       & 0.0                 \\
-Dense & 1     & Linear     & N.A.                \\ 
+Dense & 256    & ReLu       & 0.1                 \\
+Dense & 256    & ReLu       & 0.2                 \\
+Dense & 128    & ReLu       & 0.0                 \\
+Dense & 64     & ReLu       & 0.05                \\
+Dense & 64     & ReLu       & 0.0                 \\
+Dense & 16     & ReLu       & 0.0                 \\
+Dense & 1      & Linear     & N.A.                \\ 
 \hline
 \hline
 \end{tabular}
 \end{table}
 
 
-To train the \ac{NN}, two different objective functions are used. The former one is the common \acf{MSE} via:
+To train the \ac{NN}, two different loss functions are used. The former one is the common \acf{MSE} via:
 \begin{subequations}
 \begin{align}
 MSE = \frac{1}{N}\sum_{i=1}^{N}({E_a}_{i}^{DFT} - {E_a}_{i}^{NN})^2
 \label{Chap:Al/Vac:eq:MSE}
 \end{align}
 \end{subequations}
-where $N$ is the number of input datas, which can be trained in batch or mini-batch, ${E_a}_i^{DFT}$ is the diffusion barrier of $i^{\text{th}}$ data from \ac{DFT} calculation, and ${E_a}_{i}^{NN}$ is from \ac{NN} prediction. The latter one is a customized loss function, via:
+where $N$ is the number of input datas, which can be trained in batch or mini-batch, ${E_a}_i^{DFT}$ is the diffusion barrier of $i^{\text{th}}$ data from \ac{DFT} calculation, and ${E_a}_{i}^{NN}$ is from \ac{NN} prediction. As shown in Fig. \ref{Chap:Al/Vac:fig:fitting_all}, the model reached a \ac{RMSE} of 0.04313 eV/atom for all the data points. The latter one is a customized loss function, via:
 \begin{subequations}
 \begin{align}
 Loss = \frac{1}{N}\sum_{i=1}^{N}{(1.0 + \alpha (1.5 - {E_a}_{i}^{DFT})({E_a}_{i}^{DFT} - {E_a}_{i}^{NN})^2)}
 \label{Chap:Al/Vac:eq:custLoss}
 \end{align}
 \end{subequations}
-where $\alpha$ is a tunable knob. A larger $\alpha$ value will weigh more on diffusion barriers that are small. In this way, we are able to fit low-energy barriers more accurately, as they are the critical rate-determining steps in a \ac{KMC} simulation.
+where $\alpha$ is a tunable knob. A larger $\alpha$ value will weigh more on diffusion barriers that are small. In this way, we are able to fit low-energy barriers more accurately, as they are the critical rate-determining steps in a \ac{KMC} simulation. Using this custom loss function, the model reached a \ac{RMSE} of 0.03785 eV/atom for all the data points. Noting that the model trained using the latter loss function is slightly more accurate than the former method because more data points are located far away from 1.5 eV. As we expected, low-energy barriers are predicted with higher accuracy, which can be seen from Fig. \ref{Chap:Al/Vac:fig:fitting_all_weighted}.
 
 
 \begingroup
@@ -100,8 +101,17 @@ where $\alpha$ is a tunable knob. A larger $\alpha$ value will weigh more on dif
   \centering
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/total.png}}
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/fit_ordered.png}}
-\caption[]{}
+\caption[Predictions accuracy of diffusion barriers from neural network surrogate model, compared with DFT calculated results.]{Predictions accuracy of diffusion barriers from neural network surrogate model, compared with DFT calculated results. The orange solid line indicates perfect fitting. Each blue solid dot represents one data point. (a) predictions of all the barriers. (b) predictions of teneray ordered structures.}
 \label{Chap:Al/Vac:fig:fitting_all}
 \end{figure}
 \endgroup
 
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/total_weighted.png}}
+  \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/fit_ordered_weighted.png}}
+\caption[Predictions accuracy of diffusion barriers from neural network model using custom loss function, compared with DFT calculated results.]{Predictions accuracy of diffusion barriers from neural network model using custom loss function, compared with DFT calculated results. During model training, eq. \ref{Chap:Al/Vac:eq:custLoss} was used to weigh more on low-energy barriers. The orange solid line indicates perfect fitting. Each blue solid dot represents one data point. The black dashed lines illustrate the confinement introduced by custom loss function with emphasis on low-energy-barrier data points. (a) predictions of all the barriers. (b) predictions of ternary ordered structures.}
+\label{Chap:Al/Vac:fig:fitting_all_weighted}
+\end{figure}
+\endgroup
