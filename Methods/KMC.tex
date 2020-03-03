@@ -9,20 +9,22 @@ A typical \ac{KMC} method follows these procedures written below:
 
 1. Build or update an event list for all the possible event i with rate $r_i$ in the system.
 
-2. Calculate the cumulative function $R_i = \sum_{j=1}^i r_j$ for $i = 1,...,N$, where $N$ is the total number of events.
+2. Calculate the cumulative rate $R = \sum_{j=1}^N r_j$ , where $N$ is the total number of events. 
 
-3. Generate two uniform random number $u, v \in (0, 1]$.
+3. Calculate probability, $p_i$, of event i by normalizing $r_i$ by $R$.
 
-4. Choose the event $k$ based on $R_{k-1} < u < R_k$.
+4. Generate two uniform random number $u, v \in (0, 1]$.
 
-5. Carry out the event $k$.
+5. Choose the event $i$ based on $\sum_{k=1}^{i-1} p_k < u < \sum_{k=1}^{i} p_k$.
 
-6. Update the time with $t = t + \Delta t$, where $\Delta t$ is obtained via
+6. Carry out the event $i$.
+
+7. Update the time with $t = t + \Delta t$, where $\Delta t$ is obtained via
 \begin{align}
     \Delta t = - \frac{\log{v}}{R_N}
     \label{Chap:Meth:eq:KMC:1}
 \end{align}
 
-7. Goto step 1 again.
+8. Goto step 1 again.
 
 For a system of vacancy on-lattice diffusion in bulk materials, each event rate can be calculated from \ac{DFT} with \ac{NEB} method in principle. However, \ac{NEB} calculations are extremely time-consuming for simulating billions of steps for \ac{KMC}. And the relationship between diffusion barriers and energy differences are not linear for multi-component systems. Therefore, the \ac{NN} functional is trained based on \ac{DFT} calculations to predict diffusion barriers. Thus, we can build a multi-scale methodology, which combines \ac{DFT}, \ac{NN}, and \ac{KMC}, to study the thermodynamics and kinetics of the early nucleation stage of GP zone in Al alloys.
