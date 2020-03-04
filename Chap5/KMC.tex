@@ -2,12 +2,12 @@
 \section{Kinetic Monte Carlo Setup}
 \label{Chap:Al/Vac:section:KMC}
 
-Most parts of the \ac{KMC} algorithm were implemented following the approach we discussed in Chap. \ref{Chap:Mech:KMC}. In this implementation, several points are worth noticing: 1) Event list is determined on the fly. We consider the first nearest neighbor exchange of vacancies. This yields a total of 12 times the total number of vacancies possible events. 2) Then, a \ac{NN} potential is used, instead of traditional empirical potentials or analytical equations, to evaluate diffusion barriers. Noting that all the four symmetry equivalent structures are taken into consideration. 3) At each step, both the forward and backward diffusion barriers of executing the current jump will be calculated to obtain the energy change of the current system, via:
+Most parts of the \ac{KMC} algorithm were implemented following the approach we discussed in Algorithm. \ref{algo:kMC} of Chap. \ref{chap:meth:KMC}. In this implementation, several points are worth noticing: 1) Event list is determined on the fly. We consider the first nearest neighbor exchange of vacancies. This yields a total of 12 times the total number of vacancies possible events. 2) Then, a \ac{NN} potential is used, instead of traditional empirical potentials or analytical equations, to evaluate diffusion barriers. Noting that all the four symmetry equivalent structures are taken into consideration. 3) At each step, both the forward and backward diffusion barriers of executing the current jump will be calculated to obtain the energy change of the current system, via:
 \begin{align}
 \Delta E = {E_a}^{forward} - {E_a}^{backward}
 \label{Chap:Al/Vac:eq:barrier-EDiff}
 \end{align}
-where $\Delta E$ is the energy difference between initial and final state, ${E_a}^{forward}, {E_a}^{backward}$ are the forward/backward diffusion barrier, respectively. And the overall energy change as time-evolving is cumulated. 4) In order to boost the system out of low-energy barrier trapping states, a local super-basin method is also implemented based on Ref. \cite{fichthorn2013local}.
+where $\Delta E$ is the energy difference between initial and final state, ${E_a}^{forward}$ and ${E_a}^{backward}$, are the forward/backward diffusion barrier, respectively. And the overall energy change as time-evolving is cumulated. 4) In order to boost the system out of low-energy barrier trapping states, a local super-basin method is also implemented based on Ref. \cite{fichthorn2013local}.
 
 For the \ac{KMC} simulations, (30x30x30) supercell containing 108,000 atoms were used. 3240 Mg atoms, 1700 Zn atoms and 1 vacancy atom were randomly chosen among 108,000 atoms. This setup corresponds to $\sim$ 3 atom. \% of Mg, $\sim$ 2 atom. \% of Zn and a vacancy concentration of $\sim$ 1e-6. The probability, $p_k$, of selecting an event $k$ is calculated, via:
 \begin{subequations}

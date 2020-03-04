@@ -91,6 +91,11 @@
 \usepackage{lineno}
 \usepackage[caption=false]{subfig}
 
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\usepackage{algorithm}% http://ctan.org/pkg/algorithm
+\algnewcommand{\algorithmicgoto}{\textbf{go to}}%
+\algnewcommand{\Goto}[1]{\algorithmicgoto~\ref{#1}}%
+
 \begin{document}
 
 %\bibliographystyle{agu04}    % Set the bibliography style. agu04, plain, alpha, etc. Original Rackham

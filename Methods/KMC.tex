@@ -1,30 +1,29 @@
 \section{Kinetic Monte Carlo Simulation}
-\label{Chap:Mech:KMC}
+\label{chap:meth:KMC}
 
-Many real reactions will take a long time, for example, hours, to happen, so the reaction kinetics are difficult to observe by only using \ac{DFT} calculations or \ac{MD}. As discussed in section. \ref{Chap:Mech:GCMC:MC}, \ac{MC} method is used here to help solving stochastic time evolution in a much longer time scale. Much previous research used this method to simulate vacancy bulk diffusion, surface diffusion, and surface growth. \cite{frenkel2001understanding, leach2001molecular}
+Many real reactions will take a long time, for example, hours, to happen, so the reaction kinetics are difficult to observe by only using \ac{DFT} calculations or \ac{MD}. As discussed in section. \ref{Chap:Mech:GCMC:MC}, \ac{MC} method is used here to help solving stochastic time evolution in a much longer time scale. Much previous research used this method to simulate vacancy bulk diffusion, surface diffusion, and surface growth. \cite{frenkel2001understanding, leach2001molecular} A typical \ac{KMC} method is shown in Algorithm. \ref{algo:kMC}.
 
-A typical \ac{KMC} method follows these procedures written below:
-
-0. Start the simulation at time t = 0.
-
-1. Build or update an event list for all the possible event i with rate $r_i$ in the system.
-
-2. Calculate the cumulative rate $R = \sum_{j=1}^N r_j$ , where $N$ is the total number of events. 
-
-3. Calculate probability, $p_i$, of event i by normalizing $r_i$ by $R$.
-
-4. Generate two uniform random number $u, v \in (0, 1]$.
-
-5. Choose the event $i$ based on $\sum_{k=1}^{i-1} p_k < u < \sum_{k=1}^{i} p_k$.
-
-6. Carry out the event $i$.
-
-7. Update the time with $t = t + \Delta t$, where $\Delta t$ is obtained via
-\begin{align}
-    \Delta t = - \frac{\log{v}}{R_N}
-    \label{Chap:Meth:eq:KMC:1}
-\end{align}
-
-8. Goto step 1 again.
+\begin{algorithm}
+  \caption{Kinetic Monte Carlo Algorithm}\label{algo:kMC}
+  \begin{algorithmic}[1]
+    \State Start the simulation at time t = 0.
+    \While {$t < t_{Max}$ Or $epoch < epoch_{Max}$}
+        \State Build or update an event list for all the possible event i with rate $r_i$ in the system.
+        \State Calculate the cumulative rate $R = \sum_{j=1}^N r_j$,
+            where $N$ is the total number of events. 
+        \State Calculate probability, $p_i$, of event i by normalizing $r_i$ by $R$.
+        \State Generate two uniform random number $u, v \in (0, 1]$.
+        \State Choose the event $i$ based on,
+               $\sum_{k=1}^{i-1} p_k < u < \sum_{k=1}^{i} p_k$.
+        \State Carry out the event $i$.
+        \State Update the time with $t = t + \Delta t$,
+            where $\Delta t$ is obtained via
+            \begin{align}
+                \Delta t = - \frac{\log{v}}{R_N}
+            \label{Chap:Meth:eq:KMC:1}
+            \end{align}
+    \EndWhile
+\end{algorithmic}
+\end{algorithm}
 
 For a system of vacancy on-lattice diffusion in bulk materials, each event rate can be calculated from \ac{DFT} with \ac{NEB} method in principle. However, \ac{NEB} calculations are extremely time-consuming for simulating billions of steps for \ac{KMC}. And the relationship between diffusion barriers and energy differences are not linear for multi-component systems. Therefore, the \ac{NN} functional is trained based on \ac{DFT} calculations to predict diffusion barriers. Thus, we can build a multi-scale methodology, which combines \ac{DFT}, \ac{NN}, and \ac{KMC}, to study the thermodynamics and kinetics of the early nucleation stage of GP zone in Al alloys.

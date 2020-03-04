@@ -31,6 +31,24 @@ Many different machine learning/deep learning models are widely used, each one s
 The output layer of our \ac{NN} model predicts diffusion barriers in a 1-D continuous space. The input layer was chosen to be 27 discrete numbers representing atom species based on Ising model, as shown in Table. \ref{Chap:Al/Vac:tab:mapping}. Among the 27 numbers, the first one indicates the type of atom that will be swap with the vacancy. The rest 26 (each atom has 12 + 6 = 18 $\text{2}^{nd}$ nearest neighbors. And both of them share 10 in common.) atoms represents the neighboring atoms of the jump pair up to their $\text{2}^{nd}$ nearest neighbors, as shown in Fig. \ref{Chap:Al/Vac:fig:2nn}. The rest 26 numbers are arranged in their geographical order (ascending in X, Y, and Z accordingly), so their position will always respond to the same input neuron in the \ac{NN} architecture. Besides, this cluster of 26 neighboring atoms also has 2-fold symmetry, mirror symmetry along Y-Z plane, and mirror symmetry along the X-Y plane. Therefore, for one jumping event, the diffusion barrier is taken as the average of the four symmetric configurations of the 26 neighboring atoms to have a rotation-invariant prediction. By using several layers of hidden neurons between 27 input species and 1 output diffusion barrier, the contribution distribution to final output, diffusion barrier, of pair-wise and triple-wise interactions can be learned.
 
 
+\begin{algorithm}
+  \caption{Kinetic Monte Carlo Algorithm}\label{algo:encode}
+  \begin{algorithmic}[1]
+  \State set a reference matrix m0 = 
+$$
+\begin{bmatrix} 
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+\end{bmatrix}
+\quad
+$$ 
+  \State determine the jumping direction $v_1 = r_{atom} - r_{vac}$.
+  
+\end{algorithmic}
+\end{algorithm}
+
+
 \begin{table}[!htbp]
 \centering
 \caption[Atom species encoding map for the \acf{NN} input layer.]{Atom species encoding map for the \acf{NN} input layer. Here, ``Vac'' represents vacancies.}
