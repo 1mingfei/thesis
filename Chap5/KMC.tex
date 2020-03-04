@@ -21,7 +21,6 @@ For the \ac{KMC} simulations, (30x30x30) supercell containing 108,000 atoms were
 where $\mu_a$ is the diffusion pre-exponential factor, $E_a$ is the diffusion barrier, $k_B$ is the Boltzmann constant, T is the temperature, $N$ is the total number of events, and $rand$ is a random number $\in [0, 1)$. In reality, the diffusion pre-exponential factor, AKA the attempt frequency, and the diffusion barrier depend on the specific configuration \cite{osti_323431,van2001first,le2002kinetic} and type of element which the vacancy jumps to\cite{clouet2004nucleation}. We used \ac{NN} to predict the diffusion barrier, $E_a$, based on local environments. However, the attempt frequency, $\mu_a$, was chosen to use a Debye frequency of 1e13 Hz for all the jump pairs, regardless of their species and local environments. Usually, the pre-exponential factor can result in a 10 times difference. This is still tolerable to predict the event accurately, considering that the difference introduced by the exponential term would be much larger.
 
 
-\newpage
 \begingroup
 \begin{figure}[!ht]
   \centering
