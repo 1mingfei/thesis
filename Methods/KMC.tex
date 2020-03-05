@@ -3,7 +3,10 @@
 
 Many real reactions will take a long time, for example, hours, to happen, so the reaction kinetics are difficult to observe by only using \ac{DFT} calculations or \ac{MD}. As discussed in section. \ref{Chap:Mech:GCMC:MC}, \ac{MC} method is used here to help solving stochastic time evolution in a much longer time scale. Much previous research used this method to simulate vacancy bulk diffusion, surface diffusion, and surface growth. \cite{frenkel2001understanding, leach2001molecular} A typical \ac{KMC} method is shown in Algorithm. \ref{algo:kMC}.
 
-\begin{algorithm}
+\begin{figure}[htb]
+\centering
+\begin{minipage}{.7\linewidth}
+\begin{algorithm}[H]
   \caption{Kinetic Monte Carlo Algorithm}\label{algo:kMC}
   \begin{algorithmic}[1]
     \State Start the simulation at time t = 0.
@@ -25,5 +28,7 @@ Many real reactions will take a long time, for example, hours, to happen, so the
     \EndWhile
 \end{algorithmic}
 \end{algorithm}
+\end{minipage}
+\end{figure}
 
 For a system of vacancy on-lattice diffusion in bulk materials, each event rate can be calculated from \ac{DFT} with \ac{NEB} method in principle. However, \ac{NEB} calculations are extremely time-consuming for simulating billions of steps for \ac{KMC}. And the relationship between diffusion barriers and energy differences are not linear for multi-component systems. Therefore, the \ac{NN} functional is trained based on \ac{DFT} calculations to predict diffusion barriers. Thus, we can build a multi-scale methodology, which combines \ac{DFT}, \ac{NN}, and \ac{KMC}, to study the thermodynamics and kinetics of the early nucleation stage of GP zone in Al alloys.
