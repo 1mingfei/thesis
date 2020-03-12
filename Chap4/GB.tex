@@ -17,7 +17,7 @@ During the heat treatment of multi-layer coating structures, quality problems li
 \endgroup
 
 
-Solute atoms, whether they are added voluntarily for specific needs, inevitably remained as impurities after the synthesis, or introduced during the service of the material, can affect various properties of alloys by changing the stability and mobility of crystalline defects, like grain boundaries. In this section, we tried to add trace amounts of alloying elements to stabilize grain boundaries. From experiments and phenological model, W should segregate at Ag grain boundaries. \cite{chookajorn2012design,jiao2018nanocrystalline} We used \ac{DFT} to search for potential candidates. Simple grain boundaries like $\Sigma$5 (310), $\Sigma$3 (112) and twin boundary along {111} direction are used. We defined the segregation energy $E_{seg}$ via,
+Solute atoms, whether they are added voluntarily for specific needs, inevitably remained as impurities after the synthesis, or introduced during the service of the material, can affect various properties of alloys by changing the stability and mobility of crystalline defects, like grain boundaries. In this section, we tried to add trace amounts of alloying elements to stabilize grain boundaries. From experiments and phenological model, W should segregate at Ag grain boundaries. \cite{chookajorn2012design,jiao2018nanocrystalline} We used \ac{DFT} to search for potential candidates. Simple grain boundaries like $\Sigma$5 (310), $\Sigma$3 (112) and $\Sigma$3 (111) are used. We defined the segregation energy $E_{seg}$ via,
 \begin{align}
 E_{seg} = E_{X near GB} - E_{X away from GB}
  \label{Chap:Ag/ZnO:eq:gb_seg}
@@ -35,7 +35,7 @@ where $E_{X near GB}$ and $E_{X away from GB}$ are energy when solute atoms are 
 \endgroup
 
 
-All-electron \ac{PAW} potentials were employed for the elemental constituents with the \ac{GGA} of \ac{PBE} for the exchange-correlation energy functional, $\mu_{xc}$, and the interpolation formula of Vosko et al. \cite{vosko1980accurate}. Using plane-wave cutoff energy of at 450.0 eV, the total energy for all models of initial and final images was converged to $10^{−7}$ eV/cell. The reciprocal space of bulk supercells was sampled with (2x1x5), (10x1x4), and (5x3x1) k-point grids for atomic structures of $\Sigma$5 (310), $\Sigma$3 (112) and twin boundary along {111} direction. Each grid was generated using the Gamma scheme.
+All-electron \ac{PAW} potentials were employed for the elemental constituents with the \ac{GGA} of \ac{PBE} for the exchange-correlation energy functional, $\mu_{xc}$, and the interpolation formula of Vosko et al. \cite{vosko1980accurate}. Using plane-wave cutoff energy of at 450.0 eV, the total energy for all models of initial and final images was converged to $10^{−7}$ eV/cell. The reciprocal space of bulk supercells was sampled with (2x1x5), (10x1x4), and (5x3x1) k-point grids for atomic structures of $\Sigma$5 (310), $\Sigma$3 (112) and $\Sigma$3 (111). Each grid was generated using the Gamma scheme.
 
 
 \begingroup
@@ -50,7 +50,7 @@ All-electron \ac{PAW} potentials were employed for the elemental constituents wi
 \endgroup
 
 
-A double grain boundary periodic supercell was used for constructing a $\Sigma$5 (310) grain boundary, as shown in Fig. \ref{Chap:Ag/ZnO:fig16}. Atom \#49, 52 were chosen to be atoms close to the grain boundary. And atom \#94 was chosen to be the atom far away from grain boundary. We calculated the grain boundary segregation energies for different elements in Fig. \ref{Chap:Ag/ZnO:fig17}. Their segregation across the period shows a consistent trend, which is that the segregation energy increases at first and then drops. A naive explanation would be the competition between the d-electron orbital filling and the effects of the volume as atomic size increases. However, this results is contradictory to the experimental values in terms of the element tungsten, W. \cite{chookajorn2012design,jiao2018nanocrystalline} In Figure. \ref{Chap:Ag/ZnO:fig18} and \ref{Chap:Ag/ZnO:fig19}, other grain boundaries like $\Sigma$3 (112) and twin boundary along {111} direction, are also investigated using \ac{DFT}, and no case show W will segregate at either of those types of grain boundaries, despite a similar trend holds true for all of the three simple grain boundaries.
+A double grain boundary periodic supercell was used for constructing a $\Sigma$5 (310) grain boundary, as shown in Fig. \ref{Chap:Ag/ZnO:fig16}. Atom \#49, 52 were chosen to be atoms close to the grain boundary. And atom \#94 was chosen to be the atom far away from grain boundary. We calculated the grain boundary segregation energies for different elements in Fig. \ref{Chap:Ag/ZnO:fig17}. Their segregation across the period shows a consistent trend, which is that the segregation energy increases at first and then drops. A naive explanation would be the competition between the d-electron orbital filling and the effects of the volume as atomic size increases. However, this results is contradictory to the experimental values in terms of the element tungsten, W. \cite{chookajorn2012design,jiao2018nanocrystalline} In Figure. \ref{Chap:Ag/ZnO:fig18} and \ref{Chap:Ag/ZnO:fig19}, other grain boundaries like $\Sigma$3 (112) and $\Sigma$3 (111), are also investigated using \ac{DFT}, and no case show W will segregate at either of those types of grain boundaries, despite a similar trend holds true for all of the three simple grain boundaries.
 
 \begingroup
 \begin{figure}[!ht]
@@ -71,13 +71,13 @@ A double grain boundary periodic supercell was used for constructing a $\Sigma$5
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap4/plots/Picture19a.png}}
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap4/plots/Picture19b.png}}
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap4/plots/Picture19c.png}}
-\caption[Segregation energies of different elements at twin boundary along {111} direction grain boundary.]{Segregation energies of different elements at twin boundary along {111} direction grain boundary. The solid circles are for elements segregated at location \#24 in (a). And the open triangles are for elements segregated at location \#25. Sub-figure (b), (c), and (d) show d-elements and some p-elements in fourth, fifth, and sixth periods, respectively.}
+\caption[Segregation energies of different elements at $\Sigma$3 (111) grain boundary.]{Segregation energies of different elements at $\Sigma$3 (111) grain boundary. The solid circles are for elements segregated at location \#24 in (a). And the open triangles are for elements segregated at location \#25. Sub-figure (b), (c), and (d) show d-elements and some p-elements in fourth, fifth, and sixth periods, respectively.}
 \label{Chap:Ag/ZnO:fig19}
 \end{figure}
 \endgroup
 
 
-A more complicated grain boundary, $\Sigma$29 (520) as shown in Fig. \ref{Chap:Ag/ZnO:fig20}, was also studied, and it still shows repulsive interactions for W. Traditionally, researchers first obtained a relaxed grain boundary structures from pure metals and then substitute dilute atoms to calculate alloy segregation effects. One possibility of the discrepancy we observed could be that alloy elements can not only change chemistry of the grain boundaries, but also change the atomistic structure of grain boundaries in alloys. Therefore, more complicated grain boundary structures need to be obtained by global optimization methods, e.g. evolutionary algorithm, to investigate the alloy segregation effects.
+A more complicated grain boundary, $\Sigma$29 (520), from literature \cite{zhu2018predicting} as shown in Fig. \ref{Chap:Ag/ZnO:fig20}, was also studied, and it still shows repulsive interactions for W. In Table. \ref{Chap:Ag/ZnO:tab3}, W segregation energy at different sites was listed. All of them show positive values except site \# 196. However, when W atom was placed at that site, large distortion was observed across the grain boundary. And it was not a fair comparison to see W will segregate at that specific site \#196.  Traditionally, researchers first obtained a relaxed grain boundary structures from pure metals and then substitute dilute atoms to calculate alloy segregation effects. One possibility of the discrepancy we observed could be that alloying elements can not only change chemistry of the grain boundaries, but also change the atomistic structure of grain boundaries in alloys. Besides, in reality, more complicated grain boundaries, like grain boundary complexions, exist. \cite{cantwell2014grain} Therefore, more complicated grain boundary structures need to be obtained by global optimization methods, e.g. evolutionary algorithm, to investigate the alloy segregation effects.
 
 
 \begingroup
@@ -88,3 +88,33 @@ A more complicated grain boundary, $\Sigma$29 (520) as shown in Fig. \ref{Chap:A
   \label{Chap:Ag/ZnO:fig20}
 \end{figure}
 \endgroup
+
+\begin{table}[!ht]
+\caption[Tungsten segregation energy $E_{seg}$ at different sites of Ag $\Sigma$29 (520) grain boundary.]{Tungsten segregation energy $E_{seg}$ at different sites of $\Sigma$29 (520) Ag grain boundary. The segregation energy $E_{seg}$ was calculated via Equation. \ref{Chap:Ag/ZnO:eq:gb_seg}.}
+\label{Chap:Ag/ZnO:tab3}
+\centering
+\begin{tabular}{cc}
+\hline
+\hline
+site & $E_{seg}$ eV/Atom \\ 
+\hline
+183  & .17150937         \\
+185  & .39017180         \\
+191  & .33935043         \\
+196  & -.01991584        \\
+200  & .10469391         \\
+208  & .45059809         \\
+214  & .02440580         \\
+222  & .42554973         \\
+223  & .12724989         \\
+225  & .26205663         \\
+228  & .38927174         \\
+231  & .11203458         \\
+240  & .51875226         \\
+244  & .55923929         \\
+273  & .18312458         \\
+294  & .42944364         \\ 
+\hline
+\hline
+\end{tabular}
+\end{table}
