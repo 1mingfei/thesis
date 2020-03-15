@@ -68,8 +68,8 @@ Another effort we tried to make \ac{KMC} simulation faster is to boost low-energ
             \State {$step = 0$} 
         \EndIf
         \If{$step == step_{critical}$} 
-            \State {A new superbasin is found.} 
-            \State {find transient and absorbing states.}
+            \State {A new super-basin is found.} 
+            \State {find transient and absorbing states based on preset $E_{critical}$.}
             \State {compute the escape time $t_{escape}$ and probability.}
             \State {decide the exiting state.}
             \State {$time$ += $t_{escape}$}
@@ -81,3 +81,15 @@ Another effort we tried to make \ac{KMC} simulation faster is to boost low-energ
     \end{algorithm}
   \end{minipage}
 \end{figure}
+
+
+Based on the decription in Algorithm. \ref{algo:lskmc}, there are mainly two hyperparameters, $step_{critical}$ and $E_{critical}$. $step_{critical}$ means after these many steps, we have to involve a local ``super-basin'' step. And $E_{critical}$ is the energy cutoff we set to distinguish transient and absorbing states. If $E < E_{critical}$, then it is an transient state and we will not end up in this state afterwards. Otherwise, it is an absorbing state. We tested the effects of these two hyperparameters in Fig. \ref{Chap:Al/Vac:fig:lskmc_time}. As can be seen, when $step_{critical}$ were set very small and $E_{critical}$ were set very high, many local super-basin steps would be included and the vacancy will be pushed relatively farther away from the trapping sites. There was almost no flat area can be seen in light blue line. This setup was a high slackness case. On the other hand, when $step_{critical}$ were set very large and $E_{critical}$ were set very low, yellow or black line, less local super-basin steps will be involved and the vacancy will not be pushed very far away. This was a low slackness case. When intermediate values were chosen, the \ac{LSKMC} simulation behaves like regular \ac{KMC} simulations. Structures and concentrations of generated clusters were also compared to confirm \ac{LSKMC} algorithm does not introduce new stochastics to the simulation results.
+
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure{\includegraphics[width=0.95\linewidth]{Chap5/plots/compare_time.pdf}}
+\caption[Comparison of different \acf{LSKMC} parameters setup.]{Comparison of different \ac{LSKMC} parameters setup. In the legend, ``regular'' means the regular \ac{KMC} simulation without any local super-basin steps involved. Other than ``regular'' label, the first and second number correspond to the step count criteria $step_{critical}$ and energy criteria $E_{critical}$.}
+\label{Chap:Al/Vac:fig:lskmc_time}
+\end{figure}
+\endgroup
