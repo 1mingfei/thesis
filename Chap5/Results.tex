@@ -2,7 +2,7 @@
 \label{Chap:Al/Vac:section:RD}
 \subsection{Cluster Searching Algorithm}
 
-In order to better analyzing our results, we have to use a visualization method to charaterize clusters. A cluster is a set of connected atoms, each of which is within the range of one or more other atoms from the same cluster. Thus, any two atoms from the same cluster are connected by a continuous path consisting of steps fulfilling the selected neighboring criterion. Adversely, two atoms are not considered in the same cluster if there is no continuous path on the neighbor network leading from one particle to the other. We choose between the distance-based neighbor criterion, in which case two atoms are considered neighbors if they are within the neighbor list of each other. However, in our case, all the atoms are on lattice, so the method described above does not work. It will simply find one huge cluster containing all the atoms. Therefore, we use the method described in Algorithm. \ref{algo:cluster}
+In order to better analyzing our results, we have to use a visualization method to characterize clusters. A cluster is a set of connected atoms, each of which is within the range of one or more other atoms from the same cluster. Thus, any two atoms from the same cluster are connected by a continuous path consisting of steps fulfilling the selected neighboring criterion. Adversely, two atoms are not considered in the same cluster if there is no continuous path on the neighbor network leading from one particle to the other. We choose between the distance-based neighbor criterion, in which case two atoms are considered neighbors if they are within the neighbor list of each other. However, in our case, all the atoms are on lattice, so the method described above does not work. It will simply find one huge cluster containing all the atoms. Therefore, we use the method described in Algorithm. \ref{algo:cluster}
 
 
 \begin{figure}[!htb]
@@ -11,7 +11,18 @@ In order to better analyzing our results, we have to use a visualization method 
     \begin{algorithm}[H]
       \caption{Cluster Searching Algorithm}\label{algo:cluster}
       \begin{algorithmic}[1]
-        \State find cluster
+        \State remove all the solvent atoms (Al for example).
+        \State assign an initial cluster id, ($cid = -1$), to all the atoms.
+        \State set $count = 0$.
+        \For {i in all the solute atoms}
+          \If {$cid_i = -1$}
+            \State set $cid_i = count$.
+            \State \ac{BFS} in the neighbor list of atom i to find other solute atoms and set their $cid = count$.
+            \State add their first nearest neighbor solvent atoms (Al for example) back and set their $cid = count$.
+            \State $count += 1$.
+          \EndIf
+        \EndFor
+        \State then clusters can be sort by any customized methods, by cluster size, element ratios for examples.
       \end{algorithmic}
     \end{algorithm}
   \end{minipage}
