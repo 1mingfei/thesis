@@ -2,7 +2,20 @@
 \label{Chap:Al/Vac:section:RD}
 \subsection{Cluster Searching Algorithm}
 
+In order to better analyzing our results, we have to use a visualization method to charaterize clusters. A cluster is a set of connected atoms, each of which is within the range of one or more other atoms from the same cluster. Thus, any two atoms from the same cluster are connected by a continuous path consisting of steps fulfilling the selected neighboring criterion. Adversely, two atoms are not considered in the same cluster if there is no continuous path on the neighbor network leading from one particle to the other. We choose between the distance-based neighbor criterion, in which case two atoms are considered neighbors if they are within the neighbor list of each other. However, in our case, all the atoms are on lattice, so the method described above does not work. It will simply find one huge cluster containing all the atoms. Therefore, we use the method described in Algorithm. \ref{algo:cluster}
 
+
+\begin{figure}[!htb]
+  \centering
+  \begin{minipage}{.75\linewidth}
+    \begin{algorithm}[H]
+      \caption{Cluster Searching Algorithm}\label{algo:cluster}
+      \begin{algorithmic}[1]
+        \State find cluster
+      \end{algorithmic}
+    \end{algorithm}
+  \end{minipage}
+\end{figure}
 
 
 
