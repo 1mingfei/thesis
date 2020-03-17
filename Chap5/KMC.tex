@@ -37,38 +37,8 @@ where $\mu_a$ is the diffusion pre-exponential factor, $E_a$ is the diffusion ba
 \endgroup
 
 
-\subsection{\acf{LRU} Cache}
-In order to further speed up \ac{KMC} simulations, a \acf{LRU} cache, which evict least recently used entry, was implemented based on a hashmap and a  doubly-linked list. The idea is based on memorizing the most recent entries,. In this way, if the simulation was stuck in a local minimum, the repeated calculations can be ignored and directly obtained from memory. Similar idea was practiced by Mason et al.\cite{mason2005fast}. They used the ``Zobrist'' key to distinguish different binary alloy cluster structures. However, this method ignored detail local environments differences. Instead, we used the 27-digits encoding and store them in an array as the key. The hashmap will hold the keys and the address of the nodes of doubly-linked list. And each node of the doubly-linked list will hold the value of the key, which represents the corresponding diffusion barrier. We will remove elements from the bottom of doubly-linked list and add new elements on top of the bottom of doubly-linked list. And when new entry is accessed, it will be moved to the top again, therefore most recently used entries will always be on the top and least used will be at the bottom of the list. However, by now this implementation only support single core calculations. To make \ac{LRU} Cache available for multiple cores, one way is to sync or share several most recent entries every several thousands of numbers of steps.
-
-
-\begingroup
-\begin{figure}[!ht]
-  \centering
-  \subfigure{\includegraphics[width=0.95\linewidth]{Chap5/plots/lru_size.eps}}
-\caption[Comparison of \acs{LRU} cache size effects on simulation speed for a 108,000-atom supercell system running 10,000,000 steps on TACC Stampede2 cluster.]{Comparison of \acs{LRU} cache size effects on simulation speed for a 108,000-atom supercell system running 10,000,000 steps on TACC Stampede2 cluster. Without using \ac{LRU} cache to memory recent encoding entries, it will take 55,135 seconds to run the simulation.}
-\label{Chap:Al/Vac:fig:lru_size}
-\end{figure}
-\endgroup
-
-
-To hash on the key of encoding, we tried three different methods: 1) Hashing on a long long integer. The long long int datatype of C++ for a 64-bit machine, can store $2^{64} \sim 1e19$ information. 27-digits encoding scheme with Al, Mg, Zn, and Vac can take up to $4^{27} \sim 1e16$. Therefore, we can simply converting an encoding array to a decimal integer and hash on the decimal integer. 2) Hashing on a string of C++. 3) Hashing on a C string, which is explicitly an array of char. It turned out that the best strategy would be the third one, directly hashing on a C string in C++ and the best size of \ac{LRU} cache is between 3,000 and 10,000, as shown in Fig. \ref{Chap:Al/Vac:fig:lru_size} Without using \ac{LRU} cache to memory recent encoding entries, it will take 55,135 seconds to run the simulation. In general the \ac{LRU} cache method provides a 5 times speed-up. Generally speaking, in all the three methods, the speed initially drops and then increase slightly as we increase the size of the \ac{LRU} cache storage capability. This can be explained by the size of local minimum states. If the \ac{LRU} cache size increase, it will also take longer time to find the key and may also need more useless insertion operations to the cache. 
-
-
-\begingroup
-\begin{figure}[!ht]
-  \centering
-  \subfigure{\includegraphics[width=0.95\linewidth]{Chap5/plots/lru_evoke.eps}}
-\caption[Number of calls of \ac{LRU} cached results as time increases.]{Number of calls of \ac{LRU} cached results as time increases. A 3000-entries of \ac{LRU} cache is used.}
-\label{Chap:Al/Vac:fig:lru_calls}
-\end{figure}
-\endgroup
-
-
-In Fig. \ref{Chap:Al/Vac:fig:lru_calls}, we plot the number of \ac{LRU} calls against the simulated time. Initially or during early stage of simulation, only limited calls happened. Then the number of calls increase significantly around 0.0015, 0.00225, and 0.0025 second. This indicates the existence of possible local trapping states. Around these timestamps, the encoding entries stored in the cache are more possible to be called. Once the system jumps out of the current low-energy barriers, the number of \ac{LRU} calls will become sparse again.
-
-
 \subsection{\acf{LSKMC}}
-Another effort we tried to make \ac{KMC} simulation faster is to boost low-energy barrier events by using \acf{LSKMC} described here in ref. \cite{fichthorn2013local}. The algorithm goes as shown in Algorithm. \ref{algo:lskmc}. Even though the initial and final state of the vacancy is not next to each other in \ac{LSKMC} steps, the corresponding energy change can also be calculated based on a \ac{DFS} method. Because if the \ac{NN} function to predict the barrier is accurate enough, the energy differences along any path the vacancy takes from the initial site to the final site will be the same. We can do \ac{DFS} to look for an available path and use the energy changes along the way to get the energy change between two states. However, the additional computational overhead is inevitable in this method as super-basin states require enumerating method to explore. 
+One effort we tried to make \ac{KMC} simulation faster is to boost low-energy barrier events by using \acf{LSKMC} described here in ref. \cite{fichthorn2013local}. The algorithm goes as shown in Algorithm. \ref{algo:lskmc}. Even though the initial and final state of the vacancy is not next to each other in \ac{LSKMC} steps, the corresponding energy change can also be calculated based on a \ac{DFS} method. Because if the \ac{NN} function to predict the barrier is accurate enough, the energy differences along any path the vacancy takes from the initial site to the final site will be the same. We can do \ac{DFS} to look for an available path and use the energy changes along the way to get the energy change between two states. However, the additional computational overhead is inevitable in this method as super-basin states require enumerating method to explore. 
 
 \begin{figure}[!htb]
   \centering
@@ -111,3 +81,35 @@ Based on the description in Algorithm. \ref{algo:lskmc}, there are mainly two hy
 \label{Chap:Al/Vac:fig:lskmc_time}
 \end{figure}
 \endgroup
+
+
+\subsection{\acf{LRU} Cache}
+In order to further speed up \ac{KMC} simulations, a \acf{LRU} cache, which evict least recently used entry, was implemented based on a hashmap and a  doubly-linked list. The idea is based on memorizing the most recent entries,. In this way, if the simulation was stuck in a local minimum, the repeated calculations can be ignored and directly obtained from memory. Similar idea was practiced by Mason et al.\cite{mason2005fast}. They used the ``Zobrist'' key to distinguish different binary alloy cluster structures. However, this method ignored detail local environments differences. Instead, we used the 27-digits encoding and store them in an array as the key. The hashmap will hold the keys and the address of the nodes of doubly-linked list. And each node of the doubly-linked list will hold the value of the key, which represents the corresponding diffusion barrier. We will remove elements from the bottom of doubly-linked list and add new elements on top of the bottom of doubly-linked list. And when new entry is accessed, it will be moved to the top again, therefore most recently used entries will always be on the top and least used will be at the bottom of the list. However, by now this implementation only support single core calculations. To make \ac{LRU} Cache available for multiple cores, one way is to sync or share several most recent entries every several thousands of numbers of steps.
+
+
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure{\includegraphics[width=0.95\linewidth]{Chap5/plots/lru_size.eps}}
+\caption[Comparison of \acs{LRU} cache size effects on simulation speed for a 108,000-atom supercell system running 10,000,000 steps on TACC Stampede2 cluster.]{Comparison of \acs{LRU} cache size effects on simulation speed for a 108,000-atom supercell system running 10,000,000 steps on TACC Stampede2 cluster. Without using \ac{LRU} cache to memory recent encoding entries, it will take 55,135 seconds to run the simulation.}
+\label{Chap:Al/Vac:fig:lru_size}
+\end{figure}
+\endgroup
+
+
+To hash on the key of encoding, we tried three different methods: 1) Hashing on a long long integer. The long long int datatype of C++ for a 64-bit machine, can store $2^{64} \sim 1e19$ information. 27-digits encoding scheme with Al, Mg, Zn, and Vac can take up to $4^{27} \sim 1e16$. Therefore, we can simply converting an encoding array to a decimal integer and hash on the decimal integer. 2) Hashing on a string of C++. 3) Hashing on a C string, which is explicitly an array of char. It turned out that the best strategy would be the third one, directly hashing on a C string in C++ and the best size of \ac{LRU} cache is between 3,000 and 10,000, as shown in Fig. \ref{Chap:Al/Vac:fig:lru_size} Without using \ac{LRU} cache to memory recent encoding entries, it will take 55,135 seconds to run the simulation. In general the \ac{LRU} cache method provides a 5 times speed-up. Generally speaking, in all the three methods, the speed initially drops and then increase slightly as we increase the size of the \ac{LRU} cache storage capability. This can be explained by the size of local minimum states. If the \ac{LRU} cache size increase, it will also take longer time to find the key and may also need more useless insertion operations to the cache. 
+
+
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure[]{\includegraphics[width=0.85\linewidth]{Chap5/plots/lru_evoke.eps}}\label{Chap:Al/Vac:fig:lru_calls_a}
+  \subfigure[]{\includegraphics[width=0.85\linewidth]{Chap5/plots/lru_evoke_compare.eps}}\label{Chap:Al/Vac:fig:lru_calls_b}
+\caption[Number of calls of \ac{LRU} cached results as time increases.]{Number of calls of \ac{LRU} cached results as time increases. A 3000-entries of \ac{LRU} cache is used. (a) A single-core \ac{LRU} cache for 10,000,000 steps. (b) Comparison of \ac{LRU} with regular \ac{KMC} and \ac{LSKMC} of different local super-basin step involving criteria. Numbers in the legend indicates the value of $step_{critical}$. $E_{critical}$ was chosen to $0.3$ eV for all \ac{LSKMC} simulations in this plot.}
+\label{Chap:Al/Vac:fig:lru_calls}
+\end{figure}
+\endgroup
+
+
+In Fig. \ref{Chap:Al/Vac:fig:lru_calls_a}, we plot the number of \ac{LRU} calls against the simulated time. Initially or during early stage of simulation, only limited calls happened. Then the number of calls increase significantly around 0.0015, 0.00225, and 0.0025 second. This indicates the existence of possible local trapping states. Around these timestamps, the encoding entries stored in the cache are more possible to be called. Once the system jumps out of the current low-energy barriers, the number of \ac{LRU} calls will become sparse again.
+
