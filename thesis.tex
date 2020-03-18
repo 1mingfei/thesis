@@ -1,6 +1,6 @@
 % The packages used here are just a sample. You may need others, and may not need some of these. It doesn't hurt to leave them in, unless they start to conflict with other packages you've added. Chapter 2 has example code for equations, figures, tables, citations, abbreviations, etc. If there are sections labeled 'optional' that you don't want, just comment them out. -jg
 
-\documentclass[reqno,12pt,oneside]{report} % right-side equation numbering, 12 point font, print one-sided 
+\documentclass[reqno,12pt,oneside]{report} % right-side equation numbering, 12 point font, print one-sided
 %\documentclass[reqno,12pt,twoside,openright]{report} % right-side equation numbering, 12 point font, print two-sided, Chapters start on odd pages. Rackham only accepts one-sided, so this is for personal printings.
 
 \usepackage{rac}         % Use Rackham thesis style file
@@ -63,15 +63,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% If printing two-sided, this makes sure that any blank page at the 
-% end of a chapter will not have a page number. 
+% If printing two-sided, this makes sure that any blank page at the
+% end of a chapter will not have a page number.
 \makeatletter
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
 \hbox{}
 \thispagestyle{empty}
 \newpage
 \if@twocolumn\hbox{}\newpage\fi\fi\fi}
-\makeatother 
+\makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -104,7 +104,7 @@
 % Title page as required by Rackham dissertation guidelines
 \titlepage{Atomistic Simulations of Thermodynamics and Kinetics Related to Advanced Alloy Processing}{Mingfei Zhang}{Doctor of Philosophy}
 {Materials Science and Engineering and Scientific Computing}{2020}
-{Assistant Professor Liang Qi, Chair\\ 
+{Assistant Professor Liang Qi, Chair\\
 Professor Fei Gao\\
 Associate Professor Emmanouil Kioupakis\\
 Professor Amit Misra}
@@ -122,7 +122,7 @@ Professor Amit Misra}
 \makeatletter
 \if@twoside \setcounter{page}{4} \else \setcounter{page}{1} \fi
 \makeatother
- 
+
 % Optional Dedication page
 \dedicationpage{Dedicated to my family.}
 
@@ -150,12 +150,12 @@ Professor Amit Misra}
 \input{Abstract/Abstract}
 \label{Abstract}
 
-\startthechapters 
+\startthechapters
 % The individual files for each of the chapters are put here.
 % Save each chapter of your thesis to a seperate tex file
 % and then use the \input command to include this file in your
-% thesis.  For instance you can save a file to "intro.tex" and 
-% then type \input{intro}. 
+% thesis.  For instance you can save a file to "intro.tex" and
+% then type \input{intro}.
 
  \chapter{Introduction}
  \label{chap:Intro}
@@ -164,39 +164,39 @@ Professor Amit Misra}
  \chapter{Computational Material Science Methodologies}
  \label{chap:Methods}
  \input{Methods/Methods}
- 
+
  \chapter{Electronic Mechanism of H Adsorptions on ZnO Surfaces}
  \label{chap:ZnO_H}
  \input{Chap1/Chap1}
- 
+
 %  \chapter{Alloy Segregations in Ag Grain Boundaries}
 %  \label{chap:Ag_W}
 %  \input{Chap2/Chap2}
- 
+
  \chapter{Using Alloy to Enhance Corrosion Resistance of Mg Alloy with Transition Metal Impurities}
  \label{chap:Mg_H}
  \input{Chap3/Chap3}
- 
+
  \chapter{Grand Canonical Monte Carlo Simulations of Ag Thin Film Depositions}
  \label{chap:Ag/ZnO}
  \input{Chap4/Chap4}
- 
+
  \chapter{Kinetic Monte Carlo Simulations of Solute Clustering in Multi-component Al Alloys}
  \label{chap:Al/Vac}
  \input{Chap5/Chap5}
- 
+
  \chapter{Summary and Future Work}
  \label{chap:Conc}
  \input{Conc/Conc}
- 
+
 \input{Appendices/App.tex}
- 
+
 \startbibliography
  \begin{singlespace} % Bibliography must be single spaced
   \bibliography{References}   % Use the BibTeX file ``References.bib''.
  \end{singlespace}
 
-% An external Abstract that can be printed at the end of the document, 
+% An external Abstract that can be printed at the end of the document,
 % for separate submission to Rackham. Comment it out when not needed. - jg
 %\startextabstractpage
 %{The Title of Your Dissertation}{Your Name}{Chair: Albert Einstein}
