@@ -60,8 +60,6 @@ The right hand side of Equation. \ref{Chap:Al/Vac:eq:offset} can be divided into
 where $H.O.T$ is the higher order term, such as bond angles. Then the target is to find an element ``X'' that can change the diffusion barrier of Vac-i by roughly the amount of $\varepsilon_{i-X}$, where $i \in \{Al, Mg, Zn\}$.
 
 
-To setup the simulation for sensitivity tests, we use \ac{LSKMC} method with $step_{critical}$ of 25,000 steps and $E_{critical}$ of 0.3 eV. After around 5 $\sim$ 6 seconds simulation, we can already tell the differences of cluster size obviously. As discussed above, we tuned parameters of $\varepsilon_{i-X}$ for $i \in {Al, Mg, Zn}$. Detailed setup is listed in Table. \ref{Chap:Al/Vac:tab:pseudo1}.
-
 \begin{table}[!htbp]
 \centering
 \caption[Sensitivity analysis of different $\varepsilon_{i-X}$.]{Sensitivity analysis of different $\varepsilon_{i-X}$. In the table, the number of different element types are listed.}
@@ -72,14 +70,62 @@ To setup the simulation for sensitivity tests, we use \ac{LSKMC} method with $st
 \hline
 setup & $\varepsilon_{Al-X}$  & $\varepsilon_{Mg-X}$  & $\varepsilon_{Zn-X}$ & Al counts & Mg counts & Zn counts & Xe counts\\
 \hline
-1 &  0.00    &  0.00       &  0.00 & 2106 & 117 &  23 & 126                \\
-2 &  0.05    &  0.00       &  0.00 &  867 &  62 &   0 & 108                \\
-3 & -0.05    &  0.00       &  0.00 & 4808 & 183 & 109 & 206                \\
-4 &  0.05    &  0.05       &  0.00 & 6204 & 274 & 108 & 198                \\
-5 &  0.00    & -0.05       &  0.00 & 1927 &  83 &  24 & 117                \\
-6 &  0.00    &  0.00       &  0.05 & 8373 & 253 & 150 & 390                \\
-7 &  0.00    &  0.00       & -0.05 & 1810 &  87 &  19 & 105                \\
+0 &  0.00    &  0.00       &  0.00 & 2106 & 117 &  23 & 126                \\
+1 &  0.05    &  0.00       &  0.00 &  867 &  62 &   0 & 108                \\
+2 & -0.05    &  0.00       &  0.00 & 4808 & 183 & 109 & 206                \\
+3 &  0.05    &  0.05       &  0.00 & 6204 & 274 & 108 & 198                \\
+4 &  0.00    & -0.05       &  0.00 & 1927 &  83 &  24 & 117                \\
+5 &  0.00    &  0.00       &  0.05 & 8373 & 253 & 150 & 390                \\
+6 &  0.00    &  0.00       & -0.05 & 1810 &  87 &  19 & 105                \\
 \hline
 \hline
 \end{tabular}
 \end{table}
+
+
+To setup the simulation for sensitivity tests, we use \ac{LSKMC} method with $step_{critical}$ of 25,000 steps and $E_{critical}$ of 0.3 eV. After around 5 $\sim$ 6 seconds simulation, we can already tell the differences of cluster size obviously. As discussed above, we tuned parameters of $\varepsilon_{i-X}$ for $i \in {Al, Mg, Zn}$. Detailed setup is listed in Table. \ref{Chap:Al/Vac:tab:pseudo1}.
+
+
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure[$\varepsilon_{Al-X} = 0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00001.jpg}}
+  \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
+  \subfigure[$\varepsilon_{Al-X} = -0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00002.jpg}} \\
+  \subfigure[$\varepsilon_{Al-X} = 0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00001.jpg}}
+  \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
+  \subfigure[$\varepsilon_{Al-X} = -0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00002.jpg}}
+\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test. (a), (d) : $\varepsilon_{Al-X} = 0.05$, which is setup \#1 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (b), (e) : setup \#0 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (c), (f) : $\varepsilon_{Al-X} = -0.05$, which is setup \#2 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (a), (b), and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (d), (e), and (f) are colored by atom species. Light green, dark green, and red atoms are Al, Mg, and Zn, respectively.}
+\label{Chap:Al/Vac:fig:sens_Al}
+\end{figure}
+\endgroup
+
+\newpage
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure[$\varepsilon_{Mg-X} = 0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00003.jpg}}
+  \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
+  \subfigure[$\varepsilon_{Mg-X} = -0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00004.jpg}} \\
+  \subfigure[$\varepsilon_{Mg-X} = 0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00003.jpg}}
+  \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
+  \subfigure[$\varepsilon_{Mg-X} = -0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00004.jpg}}
+\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test. (a), (d) : $\varepsilon_{Mg-X} = 0.05$, which is setup \#3 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (b), (e) : setup \#0 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (c), (f) : $\varepsilon_{Mg-X} = -0.05$, which is setup \#4 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (a), (b), and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (d), (e), and (f) are colored by atom species. Light green, dark green, and red atoms are Al, Mg, and Zn, respectively.}
+\label{Chap:Al/Vac:fig:sens_Mg}
+\end{figure}
+\endgroup
+
+\newpage
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure[$\varepsilon_{Zn-X} = 0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00005.jpg}}
+  \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
+  \subfigure[$\varepsilon_{Zn-X} = -0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00006.jpg}} \\
+  \subfigure[$\varepsilon_{Zn-X} = 0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00005.jpg}}
+  \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
+  \subfigure[$\varepsilon_{Zn-X} = -0.05$]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00006.jpg}}
+\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test. (a), (d) : $\varepsilon_{Zn-X} = 0.05$, which is setup \#5 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (b), (e) : setup \#0 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (c), (f) : $\varepsilon_{Zn-X} = -0.05$, which is setup \#6 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (a), (b), and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (d), (e), and (f) are colored by atom species. Light green, dark green, and red atoms are Al, Mg, and Zn, respectively.}
+\label{Chap:Al/Vac:fig:sens_Zn}
+\end{figure}
+\endgroup
