@@ -59,3 +59,27 @@ The right hand side of Equation. \ref{Chap:Al/Vac:eq:offset} can be divided into
 \end{subequations}
 Then the target is to find an element ``X'' that can change the diffusion barrier of Vac-i by roughly the amount of $\varepsilon_{i-X}$, where $i \in \{Al, Mg, Zn\}$.
 
+
+To setup the simulation for sensitivity tests, we use \ac{LSKMC} method with $step_{critical}$ of 25,000 steps and $E_{critical}$ of 0.3 eV. After around 5 $\sim$ 6 seconds simulation, we can already tell the differences of cluster size obviously. As discussed above, we tuned parameters of $\varepsilon_{i-X}$ for $i \in {Al, Mg, Zn}$. Detailed setup is listed in Table. \ref{Chap:Al/Vac:tab:pseudo1}.
+
+\begin{table}[!htbp]
+\centering
+\caption[Sensitivity analysis of different $\varepsilon_{i-X}$.]{Sensitivity analysis of different $\varepsilon_{i-X}$.}
+\label{Chap:Al/Vac:tab:pseudo1}
+\begin{tabular}{cccc}
+\\
+\hline
+\hline
+setup & $\varepsilon_{Al-X}$  & $\varepsilon_{Mg-X}$  & $\varepsilon_{Zn-X}$\\
+\hline
+1 &  0.00    &  0.00       &  0.00                 \\
+2 &  0.05    &  0.00       &  0.00                 \\
+3 & -0.05    &  0.00       &  0.00                 \\
+4 &  0.05    &  0.05       &  0.00                 \\
+5 &  0.00    & -0.05       &  0.00                 \\
+6 &  0.00    &  0.00       &  0.05                 \\
+7 &  0.00    &  0.00       & -0.05                 \\
+\hline
+\hline
+\end{tabular}
+\end{table}
