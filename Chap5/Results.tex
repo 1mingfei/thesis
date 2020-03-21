@@ -83,7 +83,7 @@ setup & $\varepsilon_{Al-X}$  & $\varepsilon_{Mg-X}$  & $\varepsilon_{Zn-X}$ & A
 \end{table}
 
 
-To setup the simulation for sensitivity tests, we use \ac{LSKMC} method with $step_{critical}$ of 25,000 steps and $E_{critical}$ of 0.3 eV. After around 5 $\sim$ 6 seconds simulation, we can already tell the differences of cluster size obviously. As discussed above, we tuned parameters of $\varepsilon_{i-X}$ for $i \in {Al, Mg, Zn}$. Detailed setup is listed in Table. \ref{Chap:Al/Vac:tab:pseudo1}. And their corresponding final snapshots can be found in Fig. \ref{Chap:Al/Vac:fig:sens_Al}, Fig. \ref{Chap:Al/Vac:fig:sens_Mg}, and Fig. \ref{Chap:Al/Vac:fig:sens_Zn}, respectively.
+To setup the simulation for sensitivity tests, we use \ac{LSKMC} method with $step_{critical}$ of 25,000 steps and $E_{critical}$ of 0.3 eV. After around 5 $\sim$ 6 seconds simulation, we can already tell the differences of cluster size obviously. As discussed above, we tuned parameters of $\varepsilon_{i-X}$ for $i \in {Al, Mg, Zn}$. Detailed setup is listed in Table. \ref{Chap:Al/Vac:tab:pseudo1}. And their corresponding final snapshots can be found in Fig. \ref{Chap:Al/Vac:fig:sens_Al}, Fig. \ref{Chap:Al/Vac:fig:sens_Mg}, and Fig. \ref{Chap:Al/Vac:fig:sens_Zn}, respectively. In order to achieve the target of finding a suitable element ``X'', we can use \ac{DFT} with \ac{NEB} to search for elements that can change the diffusion barrier of Vac-i by roughly the amount of $\varepsilon_{i-X}$, where $i \in \{Al, Mg, Zn\}$.
 
 
 \begingroup
