@@ -41,6 +41,7 @@ In order to better analyzing our results, we have to use a visualization method 
 
 
 \subsection{Searching for Potential Elements that Can Slow Down Early Stage Nucleation}
+\label{Chap:Al/Vac:pseudo}
 Similar to the idea of searching ``anchor'' elements in Chap. \ref{Chap:Ag/ZnO:section:anchor}, we will first use \ac{KMC} simulation with some pseudo-atoms (denoted as ``X'') to study their effects on the early stage clustering. In this study, we have Al atoms as solvent atoms, and Mg, Zn atoms as solute atoms. To tune the properties of pseudo atoms, we can change the effects of different elements on vacancy diffusion barriers to the pseudo-atoms, as well as barriers to other elements. We leverage this by adding an offset to the diffusion barrier calculated from \ac{NN} model via Equation. \ref{Chap:Al/Vac:eq:offset} . The amount of the offset is determined by counting first neighbor bonding of X-Al, X-Mg, and X-Zn, via Equation. \ref{Chap:Al/Vac:eq:offset_calculation}:
 \begin{subequations}
 \begin{align}
