@@ -2,7 +2,7 @@
 \label{Chap:Al/Vac:section:RD}
 \subsection{Cluster Searching Algorithm}
 
-In order to better analyzing our results, we have to use a visualization method to characterize clusters. A cluster is a set of connected atoms, each of which is within the range of one or more other atoms from the same cluster. Thus, any two atoms from the same cluster are connected by a continuous path consisting of steps fulfilling the selected neighboring criterion. Adversely, two atoms are not considered in the same cluster if there is no continuous path on the neighbor network leading from one particle to the other. We choose between the distance-based neighbor criterion, in which case two atoms are considered neighbors if they are within the neighbor list of each other. However, in our case, all the atoms are on lattice, so the method described above does not work. It will simply find one huge cluster containing all the atoms. Therefore, we use the method described in Algorithm. \ref{algo:cluster}. We show one typical results in Fig. \ref{Chap:Al/Vac:fig:illu_cluster}. And only top ten clusters are shown. 
+In order to better analyzing our results, we have to use a visualization method to characterize clusters. A cluster is a set of connected atoms, each of which is within the range of one or more other atoms from the same cluster. Thus, any two atoms from the same cluster are connected by a continuous path consisting of steps fulfilling the selected neighboring criterion. Adversely, two atoms are not considered in the same cluster if there is no continuous path on the neighbor network leading from one particle to the other. We choose between the distance-based neighbor criterion, in which case two atoms are considered neighbors if they are within the neighbor list of each other. However, in our case, all the atoms are on lattice, so the method described above does not work. It will simply find one huge cluster containing all the atoms. Therefore, we use the method described in Algorithm. \ref{algo:cluster}. We show one typical results in Fig. \ref{Chap:Al/Vac:fig:illu_cluster}. To better visualize details of clusters,  only top ten clusters are shown. 
 %As you can see, dark red and orange clusters are almost connected. They share one Al atom in common. In that case we treat them as two clusters. Otherwise, if Al atoms are treated like bridges, then most of the atoms in the supercell will be connected as one huge cluster, which is not desired.
 
 
@@ -35,8 +35,37 @@ In order to better analyzing our results, we have to use a visualization method 
   \centering
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/cluster_illu_1.jpg}}
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/cluster_illu_2.jpg}}
-\caption[Atomistic pictures of top 10 clusters by size via cluster searching algorithm.]{Atomistic pictures of top 10 clusters by size via cluster searching algorithm. (a) Atomistic pictures of clusters coloring in atom species. Light green, dark green, and red atoms are Al, Mg, and Zn, respectively. (b) Atomistic pictures of clusters coloring in cluster id. The color mapping from dark blue to red is ranked by the cluster size in descending order. And small gray sticks are bonds between atoms.}
+\caption[Atomistic pictures of top 10 largest clusters by size via cluster searching algorithm.]{Atomistic pictures of top 10 largest clusters by size via cluster searching algorithm. (a) Atomistic pictures of clusters coloring in atom species. Light green, dark green, and red atoms are Al, Mg, and Zn, respectively. (b) Atomistic pictures of clusters coloring in cluster id. The color mapping from dark blue to red is ranked by the cluster size in descending order. And small gray sticks are bonds between atoms.}
 \label{Chap:Al/Vac:fig:illu_cluster}
+\end{figure}
+\endgroup
+
+\subsection{Benchmark of Al-Mg-Zn Clusters}
+\label{Chap:Al/Vac:benchmark}
+For the \ac{KMC} simulations, (30x30x30) supercell containing 108,000 atoms were used. 3240 Mg atoms, 1700 Zn atoms, and 1 vacancy atom were randomly chosen among 108,000 atoms. This setup corresponds to $\sim$ 3 atom. \% of Mg, $\sim$ 2 atom. \% of Zn and a vacancy concentration of $\sim$ 1e-6. We used \ac{LSKMC} algorithm to boost the simulation. After around $\sim$5.5 seconds of simulation, clusters size and the ratio of Mg/Zn converged to a local minimum of a very initial stage of the multiple-stage clustering process. As shown in Fig. \ref{Chap:Al/Vac:fig:Al_Mg_Zn_benchmark} (a), the size of Al-Mg-Zn clusters are converging to a $\sim$2400 atoms size using Algorithm. \ref{algo:cluster} with $size_{critical}$ of 3 and $bond_{critical}$ of 3. If tighter criteria($size_{critical}$ of 3 and $bond_{critical}$ of 3) were used, then much fewer atoms can be identified as forming clusters and number of atoms in clusters converges to a much smaller value of $\sim$ 1000. Even though the tighter criteria offset cluster sizes by almost 1000. Both two setups follow the same trend and converge after several seconds.
+
+\newpage
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure[]{\includegraphics[width=0.8\linewidth]{Chap5/plots/size_control.eps}}
+  \subfigure[]{\includegraphics[width=0.8\linewidth]{Chap5/plots/ratio_control.eps}}
+\caption[Size changes and ratio changes vs. time for $\sim$ 5.5 seconds. ]{Size changes and ratio changes vs. time for $\sim$ 5.5 seconds. Subplot. (a) change of cluster size including Al, Mg, and Zn atoms. (b) change of Al/(Mg+Zn) and Zn/Mg ratio. The purple line uses $size_{critical}$ of 3 and $bond_{critical}$ of 3. The green line uses $size_{critical}$ of 4 and $bond_{critical}$ of 4. The change of cluster size and Zn/Mg ratio follow a similar trend and converge after around $\sim$4 seconds.}
+\label{Chap:Al/Vac:fig:Al_Mg_Zn_benchmark}
+\end{figure}
+\endgroup
+
+And in Fig. \ref{Chap:Al/Vac:fig:Al_Mg_Zn_benchmark} (b), we plotted the ratio of Zn/Mg within identified clusters. Also, two different criteria were tested. When bonding criteria ($bond_{critical}$) was set to 4, very little Al atoms will be counted as clusters, resulting in a very low Al/(Mg+Zn) ratio. This is too artificial, therefore we did not plot it here. Again, both setups trend similarly for Zn/Mg ratio and converge around 1.25. This ratio of Zn-rich clusters is comparable to the early stage solute clusters reported in \cite{liu2020formation}. Atomistic pictures of those clusters can be found in Figure. \ref{Chap:Al/Vac:fig:sens_control}.
+
+
+\newpage
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure[cluster]{\includegraphics[width=0.8\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
+  \subfigure[species]{\includegraphics[width=0.8\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
+\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for control group, corresponding to setup \#0 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. Subplot. (a) is colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. Subplot. (b) is colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
+\label{Chap:Al/Vac:fig:sens_control}
 \end{figure}
 \endgroup
 
@@ -97,18 +126,6 @@ To setup the simulation for sensitivity tests, we use \ac{LSKMC} method with $st
   \subfigure[Al Mg Zn]{\includegraphics[width=0.8\linewidth]{Chap5/plots/size_noX.eps}}
 \caption[Size changes of different clusters vs. time using $size_{critical}$ of 3 and $bond_{critical}$ of 3.]{Size changes of different clusters vs. time using $size_{critical}$ of 3 and $bond_{critical}$ of 3. Subplot. (a) is for all the atoms including pseudo atoms. (b) is for Al, Mg, and Zn only.}
 \label{Chap:Al/Vac:fig:sens_cluster_size}
-\end{figure}
-\endgroup
-
-
-\newpage
-\begingroup
-\begin{figure}[!ht]
-  \centering
-  \subfigure[cluster]{\includegraphics[width=0.8\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
-  \subfigure[species]{\includegraphics[width=0.8\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
-\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for control group, corresponding to setup \#0 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. Subplot. (a) is colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. Subplot. (b) is colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
-\label{Chap:Al/Vac:fig:sens_control}
 \end{figure}
 \endgroup
 
