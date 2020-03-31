@@ -1,5 +1,9 @@
 \section{Results and Discussion}
 \label{Chap:Al/Vac:section:RD}
+
+In this section, we will first discuss how to distinguish and visualize clusters from the matrix. Then our benchmark on key experimental value (Zn/Mg ratio, Al/(Mg+Zn) ratio) will be discussed. Nest, we will study how to change cluster size distributions and chemical compositions by adding a small number of pseudo-atoms. At last, the viability of using cluster geometry and chemical composition to predict strength given a certain cluster will be briefly addressed.
+
+
 \subsection{Cluster Searching Algorithm}
 
 In order to better analyzing our results, we have to use a visualization method to characterize clusters. A cluster is a set of connected atoms, each of which is within the range of one or more other atoms from the same cluster. Thus, any two atoms from the same cluster are connected by a continuous path consisting of steps fulfilling the selected neighboring criterion. Adversely, two atoms are not considered in the same cluster if there is no continuous path on the neighbor network leading from one particle to the other. We choose between the distance-based neighbor criterion, in which case two atoms are considered neighbors if they are within the neighbor list of each other. However, in our case, all the atoms are on lattice, so the method described above does not work. It will simply find one huge cluster containing all the atoms. Therefore, we use the method described in Algorithm. \ref{algo:cluster}. We show one typical results in Fig. \ref{Chap:Al/Vac:fig:illu_cluster}. To better visualize details of clusters,  only top ten clusters are shown. 
@@ -44,7 +48,6 @@ In order to better analyzing our results, we have to use a visualization method 
 \label{Chap:Al/Vac:benchmark}
 For the \ac{KMC} simulations, (30x30x30) supercell containing 108,000 atoms were used. 3240 Mg atoms, 1700 Zn atoms, and 1 vacancy atom were randomly chosen among 108,000 atoms. This setup corresponds to $\sim$ 3 atom. \% of Mg, $\sim$ 2 atom. \% of Zn and a vacancy concentration of $\sim$ 1e-6. We used \ac{LSKMC} algorithm to boost the simulation. After around $\sim$5.5 seconds of simulation, clusters size and the ratio of Mg/Zn converged to a local minimum of a very initial stage of the multiple-stage clustering process. As shown in Fig. \ref{Chap:Al/Vac:fig:Al_Mg_Zn_benchmark} (a), the size of Al-Mg-Zn clusters are converging to a $\sim$2400 atoms size using Algorithm. \ref{algo:cluster} with $size_{critical}$ of 3 and $bond_{critical}$ of 3. If tighter criteria($size_{critical}$ of 3 and $bond_{critical}$ of 3) were used, then much fewer atoms can be identified as forming clusters and number of atoms in clusters converges to a much smaller value of $\sim$ 1000. Even though the tighter criteria offset cluster sizes by almost 1000. Both two setups follow the same trend and converge after several seconds.
 
-\newpage
 \begingroup
 \begin{figure}[!ht]
   \centering
@@ -148,9 +151,9 @@ From the size change comparison of adding pseudo-atoms with different $\varepsil
 
 To study the chemistry of solute clusters, we plotted the ratio of 1) solvent/solute atoms; 2) Zn/Mg in Figure. \ref{Chap:Al/Vac:fig:sens_cluster_ratio}. In Figure. \ref{Chap:Al/Vac:fig:sens_cluster_ratio} (a), the Al/(Mg+Zn+X) ratio in the clusters of those setups that growing larger dropped significantly. The reason might be two folds: 1) the pseudo-atoms (X) inside the cluster increases in these setups. 2) the shapes of those clusters tend to be more blocky like compared to the elongated structures. From Figure. \ref{Chap:Al/Vac:fig:sens_Mg}, and \ref{Chap:Al/Vac:fig:sens_Zn}, we can see there is obvious more X atoms within the identified clusters. Also, in Figure. \ref{Chap:Al/Vac:fig:sens_cluster_ratio} (b) we plotted the ratio of Al/(Mg+Zn). Without X atoms, the ratio only drops $\sim$0.1 instead of $\sim$0.2. Therefore, configurations with pseudo-atom having  $\varepsilon_{Al-X} = -0.05$, $\varepsilon_{Zn-X} = 0.05$, and $\varepsilon_{Mg-X} = 0.05$ tended to have more pseudo atoms segregate into the cluster side, and their cluster shape might tend to be more blocky (less Mg, Zn coordinates for neighbor Al to be identified as within clusters).
 
-In Figure. \ref{Chap:Al/Vac:fig:sens_cluster_ratio} (c), we compared different pseudo-atoms alloying effects on changing Zn/Mg ratio. Most of pseudo-atom setups did not change the ratio, and those configurations still form Zn-riched clusters with the ratio converging to a value of 1.2. However, more Zn-riched clusters or more Mg-riched clusters can be achieved by using $\varepsilon_{Zn-X} = 0.05$ and $\varepsilon_{Mg-X} = 0.05$. This provides the opportunity to tune cluster local chemistry, hence enhancing/weakening the APB energy barriers. In Figure. \ref{Chap:Al/Vac:fig:sens_bond}, detailed bonds information was summarized by plotting changes of different bond counts against time for the entire environment(including both matrix and clusters). 
+In Figure. \ref{Chap:Al/Vac:fig:sens_cluster_ratio} (c), we compared different pseudo-atoms alloying effects on changing Zn/Mg ratio. Most of pseudo-atom setups did not change the ratio, and those configurations still form Zn-riched clusters with the ratio converging to a value of 1.2. However, more Zn-riched clusters or more Mg-riched clusters can be achieved by using $\varepsilon_{Zn-X} = 0.05$ and $\varepsilon_{Mg-X} = 0.05$. This provides the opportunity to tune cluster local chemistry, hence enhancing/weakening the APB energy barriers.
 
-\newpage
+
 \begingroup
 \begin{figure}[!ht]
   \centering
@@ -160,11 +163,12 @@ In Figure. \ref{Chap:Al/Vac:fig:sens_cluster_ratio} (c), we compared different p
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/bond_AlX.eps}}
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/bond_MgX.eps}}
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/bond_XZn.eps}}
-\caption[Bonds between different species vs. time using $size_{critical}$ of 3 and $bond_{critical}$ of 3.]{Bonds between different species vs. time using $size_{critical}$ of 3 and $bond_{critical}$ of 3. (a), (b), (c), (d), (e), and (f) are for numbers of Al-Mg, Al-Zn, Mg-Zn, Al-X, Mg-X, and X-Zn pairs, respectively. X represents pseudo-atom.}
+\caption[Bonds between different species vs. time using $size_{critical}$ of 3 and $bond_{critical}$ of 3.]{Bonds between different species vs. time using $size_{critical}$ of 3 and $bond_{critical}$ of 3. (a), (b), (c), (d), (e), and (f) are for numbers of Al-Mg, Al-Zn, Mg-Zn, Al-X, Mg-X, and X-Zn bonds, respectively. X represents pseudo-atom.}
 \label{Chap:Al/Vac:fig:sens_bond}
 \end{figure}
 \endgroup
 
+ In Figure. \ref{Chap:Al/Vac:fig:sens_bond}, detailed bonds information was summarized by plotting changes of different bond counts against time for the entire environment(including both matrix and clusters). Counts of Al-Mg, Al-Zn, Mg-Zn, Al-X, Mg-X, and X-Zn bonds were plotted, respectively. 
 
 \newpage
 \begingroup
@@ -179,38 +183,5 @@ In Figure. \ref{Chap:Al/Vac:fig:sens_cluster_ratio} (c), we compared different p
 % \caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test. (a), (d) : $\varepsilon_{Al-X} = 0.05$, which is setup \#1 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (b), (e) : setup \#0 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (c), (f) : $\varepsilon_{Al-X} = -0.05$, which is setup \#2 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (a), (b), and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (d), (e), and (f) are colored by atom species.  Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively.}
 \caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test. (a), (c) : $\varepsilon_{Al-X} = 0.05$, which is setup \#1 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (b), (d) : $\varepsilon_{Al-X} = -0.05$, which is setup \#2 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (a) and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (b) and (d) are colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
 \label{Chap:Al/Vac:fig:sens_Al}
-\end{figure}
-\endgroup
-
-
-\newpage
-\begingroup
-\begin{figure}[!ht]
-  \centering
-  \subfigure[$\varepsilon_{Mg-X} = 0.05$, cluster]{\includegraphics[width=0.49\linewidth]{Chap5/plots/cluster_id_jpg/00003.jpg}}
-%   \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
-  \subfigure[$\varepsilon_{Mg-X} = -0.05$, cluster]{\includegraphics[width=0.49\linewidth]{Chap5/plots/cluster_id_jpg/00004.jpg}} \\
-  \subfigure[$\varepsilon_{Mg-X} = 0.05$, species]{\includegraphics[width=0.49\linewidth]{Chap5/plots/element_jpg/00003.jpg}}
-%   \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
-  \subfigure[$\varepsilon_{Mg-X} = -0.05$, species]{\includegraphics[width=0.49\linewidth]{Chap5/plots/element_jpg/00004.jpg}}
-% \caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test. (a), (d) : $\varepsilon_{Mg-X} = 0.05$, which is setup \#3 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (b), (e) : setup \#0 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (c), (f) : $\varepsilon_{Mg-X} = -0.05$, which is setup \#4 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (a), (b), and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (d), (e), and (f) are colored by atom species.  Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively.}
-\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test. (a), (c) : $\varepsilon_{Mg-X} = 0.05$, which is setup \#3 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (b), (d) : $\varepsilon_{Mg-X} = -0.05$, which is setup \#4 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (a) and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (b) and (d) are colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
-\label{Chap:Al/Vac:fig:sens_Mg}
-\end{figure}
-\endgroup
-
-\newpage
-\begingroup
-\begin{figure}[!ht]
-  \centering
-  \subfigure[$\varepsilon_{Zn-X} = 0.05$, cluster]{\includegraphics[width=0.49\linewidth]{Chap5/plots/cluster_id_jpg/00005.jpg}}
-%   \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
-  \subfigure[$\varepsilon_{Zn-X} = -0.05$, cluster]{\includegraphics[width=0.49\linewidth]{Chap5/plots/cluster_id_jpg/00006.jpg}} \\
-  \subfigure[$\varepsilon_{Zn-X} = 0.05$, species]{\includegraphics[width=0.49\linewidth]{Chap5/plots/element_jpg/00005.jpg}}
-%   \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
-  \subfigure[$\varepsilon_{Zn-X} = -0.05$, species]{\includegraphics[width=0.49\linewidth]{Chap5/plots/element_jpg/00006.jpg}}
-% \caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test. (a), (d) : $\varepsilon_{Zn-X} = 0.05$, which is setup \#5 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (b), (e) : setup \#0 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (c), (f) : $\varepsilon_{Zn-X} = -0.05$, which is setup \#6 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (a), (b), and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (d), (e), and (f) are colored by atom species.  Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively.}
-\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test. (a), (c) : $\varepsilon_{Zn-X} = 0.05$, which is setup \#5 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (b), (d) : $\varepsilon_{Zn-X} = -0.05$, which is setup \#6 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. (a) and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (b) and (d) are colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
-\label{Chap:Al/Vac:fig:sens_Zn}
 \end{figure}
 \endgroup
