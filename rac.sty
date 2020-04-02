@@ -105,8 +105,11 @@
  \vfill
  \begin{center}
   \begin{singlespace}
-   \underline{\copyright\hspace{0.2in}{#1}\hspace{0.2in}\number\year}\\
-   \vspace{0.1in}All Rights Reserved
+%   \underline{\copyright\hspace{0.2in}{#1}\hspace{0.2in}\number\year}\\
+  \hspace{0.2in}{#1}\\
+  \hspace{0.2in}mingfei@umich.edu\\
+  \hspace{0.2in}ORCID iD: 0000-0002-4865-6274\\
+   \vspace{0.1in}\copyright {#1} \number\year
   \end{singlespace}
  \end{center}
  \vfill
@@ -259,7 +262,27 @@
  \end{singlespace} 
 }
 
-\def\startabstractpage#1#2#3{% This formats the optional in-dissertation abstract - jg
+% \def\startabstractpage#1#2#3{% This formats the optional in-dissertation abstract - jg
+%  \newpage
+%  \addcontentsline{toc}{chapter}{ABSTRACT}
+%  \@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn\fi
+%  \hbox{ }
+%  \twoinmar
+%  \centerline{\large\bf ABSTRACT}
+%  \vspace{0.25in}
+%  \begin{center}
+%   \begin{singlespace}
+%   #1 \\
+%   \end{singlespace}
+%   by \\
+%   #2 \\
+%  \end{center}
+%  \vspace{0.4in}
+%  \noindent #3
+%  \vspace{0.25in}\\
+% }
+
+\def\startabstractpage{% This formats the optional in-dissertation abstract - jg
  \newpage
  \addcontentsline{toc}{chapter}{ABSTRACT}
  \@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn\fi
@@ -267,15 +290,7 @@
  \twoinmar
  \centerline{\large\bf ABSTRACT}
  \vspace{0.25in}
- \begin{center}
-  \begin{singlespace}
-   #1 \\
-  \end{singlespace}
-   by \\
-   #2 \\
- \end{center}
  \vspace{0.4in}
- \noindent #3
  \vspace{0.25in}\\
 }
 
