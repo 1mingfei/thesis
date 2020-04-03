@@ -57,15 +57,27 @@ For the \ac{kMC} simulations, (30x30x30) supercell containing 108,000 atoms were
 \end{figure}
 \endgroup
 
-And in Fig. \ref{Chap:Al/Vac:fig:Al_Mg_Zn_benchmark} (b), we plotted the ratio of Zn/Mg within identified clusters. Also, two different criteria were tested. When bonding criteria ($bond_{critical}$) was set to 4, very little Al atoms will be counted as clusters, resulting in a very low Al/(Mg+Zn) ratio. This is too artificial, therefore we did not plot it here. Again, both setups trend similarly for Zn/Mg ratio and converge around 1.25. This ratio of Zn-rich clusters is comparable to the early stage solute clusters reported in \cite{liu2020formation}. Atomistic pictures of those clusters can be found in Figure. \ref{Chap:Al/Vac:fig:sens_control}. In addition, the distribution of cluster sizes is provided in Figure. \ref{Chap:Al/Vac:fig:size_distr}. With cluster size frequencies, it becomes easier to identify how many clusters are stable.
+And in Fig. \ref{Chap:Al/Vac:fig:Al_Mg_Zn_benchmark} (b), we plotted the ratio of Zn/Mg within identified clusters. Also, two different criteria were tested. When bonding criteria ($bond_{critical}$) was set to 4, very little Al atoms will be counted as clusters, resulting in a very low Al/(Mg+Zn) ratio. This is too artificial, therefore we did not plot it here. Again, both setups trend similarly for Zn/Mg ratio and converge around 1.25. This ratio of Zn-rich clusters is comparable to the early stage solute clusters reported in \cite{liu2020formation}. Atomistic pictures of those clusters can be found in Figure. \ref{Chap:Al/Vac:fig:sens_control}. In addition, the distribution of cluster sizes is provided in Figure. \ref{Chap:Al/Vac:fig:size_distr}. With cluster size frequencies, it becomes easier to identify how many clusters are stable. In Figure. \ref{Chap:Al/Vac:fig:size_distr} (a) and (b) we compared the size distribution of a Al-Mg-Zn system evolving for 5 seconds and 22 seconds. Both configurations at 5 and 22 seconds follow a Poisson distribution pattern. In Figure. \ref{Chap:Al/Vac:fig:long}, we also observed the number of Al, Mg, and Zn atoms in all identified clusters and the number of Mg-Zn bonds across the structure (both matrix and clusters) for the first 22 seconds. After the initial 1 or 2 seconds, these two descriptors became steady and oscillated around 2500 and 1200, respectively.
 
 
 \begingroup
 \begin{figure}[!ht]
   \centering
-  \subfigure{\includegraphics[width=0.9\linewidth]{Chap5/plots/size_dist.pdf}}
-\caption[Size distribution of identified clusters at 5 seconds.]{Size distribution of identified clusters at 5 seconds.}
+  \subfigure[]{\includegraphics[width=0.65\linewidth]{Chap5/plots/size_dist_5.pdf}}
+  \subfigure[]{\includegraphics[width=0.65\linewidth]{Chap5/plots/size_dist_22.pdf}}
+\caption[Size distribution of identified clusters at 5 seconds and 22 seconds.]{Size distribution of identified clusters at 5 seconds in plot (a) and 22 seconds in plot (b).}
 \label{Chap:Al/Vac:fig:size_distr}
+\end{figure}
+\endgroup
+
+
+\begingroup
+\begin{figure}[!ht]
+  \centering
+  \subfigure[]{\includegraphics[width=0.65\linewidth]{Chap5/plots/size_control_long.eps}}
+  \subfigure[]{\includegraphics[width=0.65\linewidth]{Chap5/plots/bond_MgZn_long.eps}}
+\caption[Cluster size and Mg-Zn bonds change for the first 22 seconds.]{Cluster size and Mg-Zn bonds change for the first 22 seconds. (a) The number of Al, Mg, and Zn atoms in all identified clusters vs. time. (b) The number of Mg-Zn bonds across the structure (both matrix and clusters) vs. time.}
+\label{Chap:Al/Vac:fig:long}
 \end{figure}
 \endgroup
 
@@ -74,8 +86,8 @@ And in Fig. \ref{Chap:Al/Vac:fig:Al_Mg_Zn_benchmark} (b), we plotted the ratio o
 \begingroup
 \begin{figure}[!ht]
   \centering
-  \subfigure[cluster]{\includegraphics[width=0.8\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
-  \subfigure[species]{\includegraphics[width=0.8\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
+  \subfigure[cluster]{\includegraphics[width=0.75\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
+  \subfigure[species]{\includegraphics[width=0.75\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
 \caption[Atomistic pictures of 108,000 atoms for the control group of the sensitivity test.]{Atomistic pictures of 108,000 atoms for control group, corresponding to setup \#0 in Table. \ref{Chap:Al/Vac:tab:pseudo1}. Subplot. (a) is colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. Subplot. (b) is colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
 \label{Chap:Al/Vac:fig:sens_control}
 \end{figure}
@@ -134,8 +146,8 @@ To setup the simulation for sensitivity tests, we use \ac{LSKMC} method with $st
 \begingroup
 \begin{figure}[!ht]
   \centering
-  \subfigure[cluster size of Al Mg Zn X]{\includegraphics[width=0.8\linewidth]{Chap5/plots/size.eps}}
-  \subfigure[cluster size of Al Mg Zn]{\includegraphics[width=0.8\linewidth]{Chap5/plots/size_noX.eps}}
+  \subfigure[cluster size of Al Mg Zn X]{\includegraphics[width=0.6\linewidth]{Chap5/plots/size.eps}}
+  \subfigure[cluster size of Al Mg Zn]{\includegraphics[width=0.6\linewidth]{Chap5/plots/size_noX.eps}}
 \caption[Size changes of different clusters vs. time using $size_{critical}$ of 3 and $bond_{critical}$ of 3.]{Size changes of different clusters vs. time using $size_{critical}$ of 3 and $bond_{critical}$ of 3. Subplot. (a) is for all the atoms including pseudo atoms. (b) is for Al, Mg, and Zn only.}
 \label{Chap:Al/Vac:fig:sens_cluster_size}
 \end{figure}
