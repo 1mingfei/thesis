@@ -14,14 +14,14 @@ In order to conduct \ac{GCMC} simulations accurately for metal deposition, a rea
  \Phi_{LJ} = 4\epsilon \left[ (\frac{\sigma}{r})^{12} - (\frac{\sigma}{r})^6\right]
  \label{Chap:Ag/ZnO:eq:LJ}
 \end{align}
-where $\epsilon$ controls bonding strength and $\sigma$ changes equilibrium bond lengths. As shown in Figure \ref{Chap:Ag/ZnO:fig2}, purple, green and blue lines describes the interaction between Ag atom and normal, week, and strong bonding with substrates, respectively. And the equilibrium bond length is fitted for the bond distance between Ag and ZnO substrates at $\sim$ 2.3$\angstrom$. And the yellow line corresponding to the substrate interactions itself, we set the bond length based on ZnO substrates lattice constant. And a strong potential well is used in order to simulate a more rigid substrate. The \ac{GCMC} code we used is from J. Li's Group in MIT\cite{sina2017mapp}.
+where $\epsilon$ controls bonding strength and $\sigma$ changes equilibrium bond lengths. As shown in Figure \ref{Chap:Ag/ZnO:fig2}, purple, green and blue lines describes the interaction between Ag atom and normal, week, and strong bonding with substrates, respectively. And the equilibrium bond length is fitted for the bond distance between Ag and ZnO substrates at $\sim$2.3$\angstrom$. And the yellow line corresponding to the substrate interactions itself, we set the bond length based on ZnO substrates lattice constant. And a strong potential well is used in order to simulate a more rigid substrate. The \ac{GCMC} code we used is from J. Li's Group in MIT\cite{sina2017mapp}.
 
 As we previously discussed in Chapter \ref{Chap:Mech:GCMC:GCMC}, the chemical potentials of elements of interest are used to decide the probability of accepting/rejecting a certain event. The Ag gas phase chemical potential is used, via:
 \begin{align}
  \mu_{Ag(g)} = \mu_{Ag(bulk)} + k_{B}T\ln{\frac{p}{p_0}}
  \label{Chap:Ag/ZnO:eq:mu_Ag}
 \end{align}
-where, $p_0$ is the Ag evaporation pressure. Usually, the vacuum pressure of a sputtering chamber is $\sim$ 1 $pa$. So a chemical potential $\mu$ of -0.6 $eV$ is used to simulate $p$=1$Pa$ Ag partial pressure at 300$K$.
+where, $p_0$ is the Ag evaporation pressure. Usually, the vacuum pressure of a sputtering chamber is $\sim$1 $pa$. So a chemical potential $\mu$ of -0.6 $eV$ is used to simulate $p$=1$Pa$ Ag partial pressure at 300$K$.
 
 \newpage
 \begingroup
@@ -32,7 +32,7 @@ where, $p_0$ is the Ag evaporation pressure. Usually, the vacuum pressure of a s
   \\
   \subfigure[]{\includegraphics[width=0.42\linewidth]{Chap4/plots/Picture3c.pdf}}\label{Chap:Ag/ZnO:fig:3c}
   \subfigure[]{\includegraphics[width=0.42\linewidth]{Chap4/plots/Picture3d.pdf}}\label{Chap:Ag/ZnO:fig:3d}
-\caption[Four different substrate types for GCMC simulation.]{Four different substrate types for GCMC simulation: (a) hexagonal, (b) rectangular, (c) square like surface lattice, and (d) amorphous surface. }
+\caption[Four different substrate types for \ac{GCMC} simulation.]{Four different substrate types for \ac{GCMC} simulation: (a) hexagonal, (b) rectangular, (c) square like surface lattice, and (d) amorphous surface. }
   \label{Chap:Ag/ZnO:fig3}
 \end{figure}
 \endgroup
