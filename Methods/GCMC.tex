@@ -3,7 +3,7 @@
 
 \subsection{Grand Canonical Ensemble}
 
-The canonical ensemble is a statistical ensemble that consists of $N$ atoms and is in thermodynamic equilibrium with a big reservoir. Energy transfer is allowed between the system and the big reservoir, but particle transfer is impermissible. The big reservoir can be described as a system with relatively large heat capacity, and its temperature $T$ remains constant in spite of any energy transfer. Grand canonical ensemble is a statistical ensemble that can exchange particles with a reservoir as an open system. Besides, the big reservoir can also act as an infinite heat resource allowing heat transfer as shown in Figure \ref{Chap:Meth:GCMC:fig1}. \cite{frenkel2001understanding} Therefore in the grand canonical ensemble, the number of atoms $N$ in the system can be changed and chemical potential of each element $\mu_i$, the volume of the system $V$ and temperature $T$ are fixed, hence this system as known as $\mu VT$ system.
+The canonical ensemble is a statistical ensemble that consists of $N$ atoms and is in thermodynamic equilibrium with a big reservoir. Energy transfer is allowed between the system and the big reservoir, but particle transfer is impermissible. The big reservoir can be described as a system with relatively large heat capacity, and its temperature $T$ remains constant in spite of any energy transfer. Grand canonical ensemble is a statistical ensemble that can exchange particles with a reservoir as an open system. Besides, the big reservoir can also act as an infinite heat resource allowing heat transfer as shown in Figure \ref{Chap:Meth:GCMC:fig1}. \cite{frenkel2001understanding} Therefore in the grand canonical ensemble, the number of atoms $N$ in the system can be changed and chemical potential of each element $\mu_i$, the volume of the system $V$ and temperature $T$ are fixed, hence this system is known as $\mu VT$ system.
 
 \begingroup
 \begin{figure}[!ht]
@@ -31,7 +31,7 @@ inserting a new atom:
 \begin{align}
 acc(N \rightarrow N+1) = \text{min}(1, \frac{V}{\wedge^3(N+1)}exp(\beta(\mu - U(N + 1) + U(N)))) \label{Chap:Meth:eq:acc:insert}
 \end{align}
-and removing an exiting atom:
+and removing an existing atom:
 \begin{align}
 acc(N \rightarrow N-1) = \text{min}(1, \frac{\wedge^3(N)}{V}exp(-\beta(\mu + U(N - 1) - U(N)))) \label{Chap:Meth:eq:acc:remove}
 \end{align}
