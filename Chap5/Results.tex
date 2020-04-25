@@ -68,13 +68,13 @@ And in Figure \ref{Chap:Al/Vac:fig:Al_Mg_Zn_benchmark} (b), we plotted the ratio
   \subfigure[]{\includegraphics[width=0.32\linewidth]{Chap5/plots/Al_conc_barr.png}}
   \subfigure[]{\includegraphics[width=0.32\linewidth]{Chap5/plots/Mg_conc_barr.pdf}}
   \subfigure[]{\includegraphics[width=0.32\linewidth]{Chap5/plots/Zn_conc_barr.pdf}}
-\caption[Vacancy migration barrier changes vs. different local environment concentrations.]{Vacancy migration barrier changes vs. different local environment concentrations. Vacancy migration barriers of vacancy jumping to Al, Mg, and Zn are plotted for different local (a) Al, (b) Mg, and (c) Zn concentrations. 500,000 different local environments are used to calculate this vacancy migration barrier distribution by a pre-trained neural network model. Blue, orange, and green lines are vacancy migration barriers for Al, Mg, and Zn, respectively. The vertical line is the corresponding error bars. Concentration values of Mg and Zn are shifted by 0.001 to avoid error bars overlapping.}
+\caption[Vacancy migration barrier changes vs. different local environment concentrations.]{Vacancy migration barrier changes vs. different local environment concentrations. Vacancy migration barriers of a vacancy jumping to its adjacent lattice site that is occupied by Al, Mg, or Zn for different local environments are plotted. (a), (b), and (c) are local environments with concentration change of Al, Mg, and Zn, respectively. 500,000 different local environments are used to calculate this vacancy migration barrier distribution by a pre-trained neural network model. Blue, orange, and green lines are the migration barriers for a vacancy jumping to adjacent Al, Mg, and Zn, respectively. The X-axis is the local concentration of Al, Mg, and Zn defined by the lattice occupations on the first and second-nearest neighbors of the vacancy sites. The vertical line is the corresponding error bars. Concentration values of Mg and Zn are shifted by 0.001 to avoid error bars overlapping.}
 \label{Chap:Al/Vac:fig:conc_E}
 \end{figure}
 \endgroup
 
 
-\textcolor{red}{We would also like to explain why Zn-rich clusters are common during the early stage of clustering. In Figure \ref{Chap:Al/Vac:fig:conc_E}, we plotted vacancy migration barriers of vacancy jumping to Al, Mg, and Zn are plotted for different local environments. We take advantage of our pre-trained neural network model to random sample 500,000 different local environments. This random sampling provides a reasonable estimation of the early clustering stage. When Al local concentration is low in Figure \ref{Chap:Al/Vac:fig:conc_E} (a), Zn and Mg mobility are much lower than Al. This provides the opportunity for Mg and Zn atoms to reorganize and form stable clusters. Low barriers of the vacancy jumping to Zn could result in the slightly Zn-rich clusters during the early stage of clustering since the mobility of Zn is much lower than Al and Mg in all three subplots.}
+We would also like to explain why Zn-rich clusters are common during the early stage of clustering. Using the pre-trained neural network model, vacancy migration barriers can be studied under different amounts of local concentration change more systematically. As shown in Figure. 6.15, we plotted vacancy migration barriers of a vacancy jumping to its adjacent lattice site that is occupied by Al, Mg, or Zn for different local environments. We take advantage of our pre-trained neural network model to randomly sample 500,000 different local environments. We found when Al local concentration is very low in Figure 6.15 (a), Zn and Mg mobility is much higher than Al since the migration barriers of the vacancy jumping to the adjacent Zn and Mg atoms are always lower than their counterpart for Al atoms. A local environment with very low Al concentration usually means Mg/Zn atoms are enriched. Highly mobile Zn and Mg atoms might provide the opportunity for Zn and Mg atoms to reorganize and form stable clusters under low Al concentration. In addition, lower barriers of the vacancy jumping to Zn compared with their counterparts of Mg could result in the slightly Zn-rich clusters during the early stage of clustering. As shown in Fig. 6.15 (b) and (c), the migration barriers of the vacancy jumping to the adjacent Zn, Mg, and Al atoms always rank in the order of Zn $<$ Mg $<$ Al regardless of the local concentration, further suggesting the tendencies of high mobility of Zn atoms and the formation of Zn-rich clusters.
 
 
 Atomistic pictures of those clusters can be found in Figure \ref{Chap:Al/Vac:fig:sens_control}. In addition, the distribution of cluster sizes is provided in Figure \ref{Chap:Al/Vac:fig:size_distr}. With cluster size frequencies, it becomes easier to identify how many clusters are stable. In Figure \ref{Chap:Al/Vac:fig:size_distr} (a) and (b) we compared the size distribution of a Al-Mg-Zn system evolving for 5 seconds and 22 seconds. Both configurations at 5 and 22 seconds follow a Poisson distribution pattern. In Figure \ref{Chap:Al/Vac:fig:long}, we also observed the number of Al, Mg, and Zn atoms in all identified clusters and the number of Mg-Zn bonds across the structure (both matrix and clusters) for the first 22 seconds. After the initial 1 or 2 seconds, these two descriptors became steady and oscillated around 2500 and 1200, respectively.
@@ -251,41 +251,41 @@ To study the chemistry of solute clusters, we plotted the ratio of 1) solvent/so
 In Figure \ref{Chap:Al/Vac:fig:sens_cluster_ratio} (c), we compared different pseudo-atoms alloying effects on changing Zn/Mg ratio. Most of the pseudo-atom setups did not change the ratio, and those configurations still form Zn-rich clusters with the ratio converging to a value of 1.2. However, more Zn-rich clusters or more Mg-rich clusters can be achieved by using $\varepsilon_{Zn-X} = 0.05$ and $\varepsilon_{Mg-X} = 0.05$. Zn/Mg ratio is more sensitive to diffusion barriers change of Zn bonds. This provides the opportunity to tune cluster local chemistry, hence enhancing/weakening the APB energy barriers. In Figure \ref{Chap:Al/Vac:fig:sens_bond}, detailed bond information was summarized by plotting changes of different bond counts against time for the entire environment(including both matrix and clusters). Counts of Al-Mg, Al-Zn, Mg-Zn, Al-X, Mg-X, and X-Zn bonds were plotted, respectively.
 
 
-\begingroup
-\begin{figure}[!ht]
-  \centering
-  \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/BC.pdf}}
-\caption[Predicted energies using bond counting model vs. energies calculated by \ac{DFT}.]{Predicted energies using bond counting model vs. energies calculated by \ac{DFT} of 222 data points. A RMSE of 1.25 meV/atom is achieved.}
-\label{Chap:Al/Vac:fig:bond_count}
-\end{figure}
-\endgroup
+% \begingroup
+% \begin{figure}[!ht]
+%   \centering
+%   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/BC.pdf}}
+% \caption[Predicted energies using bond counting model vs. energies calculated by \ac{DFT}.]{Predicted energies using bond counting model vs. energies calculated by \ac{DFT} of 222 data points. A RMSE of 1.25 meV/atom is achieved.}
+% \label{Chap:Al/Vac:fig:bond_count}
+% \end{figure}
+% \endgroup
 
 
 The ultimate provision of this study is to understand how clusters affect strengthening and how to manipulate it during natural aging in multicomponent Al alloys. To investigate the relationship between clusters and strength/hardness, many theories have been developed recently\cite{yasi2010first, starink2009thermodynamics, curtin2006predictive}. From a microscopic view, the hardening happens by clusters impeding dislocation motion. The effect of clusters on changing hardness can come from two sources: 1) the long-range effect, which is the elastic interactions between the misfit strain field of clusters and dislocation strain fields (``strain misfit effects''); 2) the short-range effect, which is the change of stacking fault energies related to dislocation core behavior due to clusters(``chemical effects'')\cite{yasi2010first}.
 
 
-\begin{table}[!htbp]
-\centering
-\caption[Bond-wise energies fitted by bond counting model.]{Bond-wise energies fitted by bond counting model.}
-\label{Chap:Al/Vac:tab:bond_count}
-\begin{tabular}{cc}
-\\
-\hline
-\hline
-bond & bond-wise energy (eV/bond)\\ \hline
-Al-Al & -0.60648589\\
-Al-Mg & -0.41880444\\
-Al-Zn & -0.38473348\\
-Mg-Mg & -0.21746198\\
-Mg-Zn & -0.23373609\\
-Zn-Zn & -0.17651597\\
-\hline
-\hline
-\end{tabular}
-\end{table}
+% \begin{table}[!htbp]
+% \centering
+% \caption[Bond-wise energies fitted by bond counting model.]{Bond-wise energies fitted by bond counting model.}
+% \label{Chap:Al/Vac:tab:bond_count}
+% \begin{tabular}{cc}
+% \\
+% \hline
+% \hline
+% bond & bond-wise energy (eV/bond)\\ \hline
+% Al-Al & -0.60648589\\
+% Al-Mg & -0.41880444\\
+% Al-Zn & -0.38473348\\
+% Mg-Mg & -0.21746198\\
+% Mg-Zn & -0.23373609\\
+% Zn-Zn & -0.17651597\\
+% \hline
+% \hline
+% \end{tabular}
+% \end{table}
 
 
-For the elastic strain effects, each cluster provides only a small amount of resistance, but the very high density of clusters generates a high overall strain effect to impede the dislocation movement. This strain field is a function of cluster size, cluster distribution as well as chemical distribution across the matrix. For the short-range chemical effects, when dislocations cut through ordered solute clusters, only local bond changes is observed. Additional energy is required to create bond order changes, such as an anti-phase boundary (APB). The work needs to be done for movements of dislocations hampered by clusters equals the change in energy-related to the short-range order per unit area of slip planes. Hence it is then critical to figure out how the short-range order of clusters affects the hardness. \textcolor{red}{To demonstrate this concept and to understand which bond is more critical to increase APB energies, we fit a simple bond counting model to predict energies of different Al-Mg-Zn structures. In Figure \ref{Chap:Al/Vac:fig:bond_count}, we plot the accuracy of our bond counting model. It reaches an RMSE of 1.25 meV/atom for 222 data points. And we listed bond-wise energies of different bonding in Table \ref{Chap:Al/Vac:tab:bond_count}. The largest contribution is Zn-Zn bonding. Under quasi-equilibrium kinetics, if we have a larger variation in the bond-wise energies, after dislocation cutting through, there is a larger possibility to have a high APB energy. If we can find some element(X) that can 1) increase the number of X-Zn bonding like $\varepsilon_{Zn-X}$ in Figure \ref{Chap:Al/Vac:fig:sens_bond} (f) and 2) a lower X-Zn bond-wise energy contribution, then this element could slow down Al alloy hardening effects.}
+For the elastic strain effects, each cluster provides only a small amount of resistance, but the very high density of clusters generates a high overall strain effect to impede the dislocation movement. This strain field is a function of cluster size, cluster distribution as well as chemical distribution across the matrix. For the short-range chemical effects, when dislocations cut through ordered solute clusters, only local bond changes is observed. Additional energy is required to create bond order changes, such as an anti-phase boundary (APB). The work needs to be done for movements of dislocations hampered by clusters equals the change in energy-related to the short-range order per unit area of slip planes. Hence it is then critical to figure out how the short-range order of clusters affects the hardness. %\textcolor{red}{To demonstrate this concept and to understand which bond is more critical to increase APB energies, we fit a simple bond counting model to predict energies of different Al-Mg-Zn structures. In Figure \ref{Chap:Al/Vac:fig:bond_count}, we plot the accuracy of our bond counting model. It reaches an RMSE of 1.25 meV/atom for 222 data points. And we listed bond-wise energies of different bonding in Table \ref{Chap:Al/Vac:tab:bond_count}. The largest contribution is Zn-Zn bonding. Under quasi-equilibrium kinetics, if we have a larger variation in the bond-wise energies, after dislocation cutting through, there is a larger possibility to have a high APB energy. If we can find some element(X) that can 1) increase the number of X-Zn bonding like $\varepsilon_{Zn-X}$ in Figure \ref{Chap:Al/Vac:fig:sens_bond} (f) and 2) a lower X-Zn bond-wise energy contribution, then this element could slow down Al alloy hardening effects.}
 
 
 In multicomponent alloys, the elastic strain effects and chemical effects of solute clusters could couple together and become more complicated when the chemical compositions and structures of clusters become complex. First-principles calculations can be applied to obtain the parameters related to elastic strain and chemical effects of these clusters, similar to those for solid solution strengthening model\cite{yasi2010first}.  Then these parameters are used in the classical continuum model to predict the overall cluster strengthening effects. Advanced machine learning models can be used to speed up the prediction based on first-principle data sets of the parameters of elastic strain effects and chemical effects of many clusters from \ac{kMC} simulations. Then we can build a surrogate model to predict the natural aging hardening effects under the influence of various types of solute elements directly based on \ac{kMC} simulation results.
