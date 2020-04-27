@@ -11,7 +11,7 @@ In this section, we will first discuss how to distinguish and visualize clusters
   \centering
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/cluster_illu_1.jpg}}
   \subfigure[]{\includegraphics[width=0.49\linewidth]{Chap5/plots/cluster_illu_2.jpg}}
-\caption[Atomistic pictures of the top 10 largest clusters by size via cluster searching algorithm.]{Atomistic pictures of the top 10 largest clusters by size via cluster searching algorithm from a snapshot during a \ac{kMC} simulation. (a) Atomistic pictures of clusters coloring in atom species. Light green, dark green, and red atoms are Al, Mg, and Zn, respectively. (b) Atomistic pictures of clusters coloring in cluster id. The color mapping from dark blue to red is ranked by the cluster size in descending order. Small gray sticks are bonds between atoms.}
+\caption[Atomistic pictures of the top 10 largest clusters by size via cluster searching algorithm from a snapshot during a \ac{kMC} simulation.]{Atomistic pictures of the top 10 largest clusters by size via cluster searching algorithm from a snapshot during a \ac{kMC} simulation. (a) Atomistic pictures of clusters coloring in atom species. Light green, dark green, and red atoms are Al, Mg, and Zn, respectively. (b) Atomistic pictures of clusters coloring in cluster id. The color mapping from dark blue to red is ranked by the cluster size in descending order. Small gray sticks are bonds between atoms.}
 \label{Chap:Al/Vac:fig:illu_cluster}
 \end{figure}
 \endgroup
@@ -53,7 +53,7 @@ For the \ac{kMC} simulations, (30$\times$30$\times$30) supercell containing 108,
   \centering
   \subfigure[]{\includegraphics[width=0.8\linewidth]{Chap5/plots/size_control.eps}}
   \subfigure[]{\includegraphics[width=0.8\linewidth]{Chap5/plots/ratio_control.eps}}
-\caption[Size changes and ratio changes vs. time for $\sim$5.5 seconds. ]{Size changes and ratio changes vs. time for $\sim$5.5 seconds. Subplot. (a) the change of cluster size including Al, Mg, and Zn atoms. (b) the change of Al/(Mg+Zn) and Zn/Mg ratio. The purple line uses $size_{critical}$ of 3 and $bond_{critical}$ of 3. The green line uses $size_{critical}$ of 4 and $bond_{critical}$ of 4. The change of cluster size and Zn/Mg ratio follow a similar trend and converge after around $\sim$4 seconds.}
+\caption[Size changes and ratio changes vs. time for $\sim$5.5 seconds.]{Size changes and ratio changes vs. time for $\sim$5.5 seconds. Subplot (a) the change of cluster size including Al, Mg, and Zn atoms; (b) the change of Al/(Mg+Zn) and Zn/Mg ratio. The purple line uses $size_{critical}$ of 3 and $bond_{critical}$ of 3. The green line uses $size_{critical}$ of 4 and $bond_{critical}$ of 4. The change of cluster size and Zn/Mg ratio follow a similar trend and converge after around $\sim$4 seconds.}
 \label{Chap:Al/Vac:fig:Al_Mg_Zn_benchmark}
 \end{figure}
 \endgroup
@@ -86,7 +86,7 @@ Atomistic pictures of those clusters can be found in Figure \ref{Chap:Al/Vac:fig
   \centering
   \subfigure[cluster]{\includegraphics[width=0.75\linewidth]{Chap5/plots/cluster_id_jpg/00000.jpg}}
   \subfigure[species]{\includegraphics[width=0.75\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
-\caption[Atomistic pictures of 108,000 atoms for the control group of the sensitivity test.]{Atomistic pictures of 108,000 atoms for control group, corresponding to setup \#0 in Table \ref{Chap:Al/Vac:tab:pseudo1}. Subplot. (a) is colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. Subplot. (b) is colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. Small gray sticks are bonds between atoms.}
+\caption[Atomistic pictures of 108,000 atoms for control group, corresponding to setup \#0 in Table \ref{Chap:Al/Vac:tab:pseudo1}.]{Atomistic pictures of 108,000 atoms for control group, corresponding to setup \#0 in Table \ref{Chap:Al/Vac:tab:pseudo1}. Subplot. (a) is colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. Subplot. (b) is colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. Small gray sticks are bonds between atoms.}
 \label{Chap:Al/Vac:fig:sens_control}
 \end{figure}
 \endgroup
@@ -96,7 +96,7 @@ Atomistic pictures of those clusters can be found in Figure \ref{Chap:Al/Vac:fig
   \centering
   \subfigure[]{\includegraphics[width=0.65\linewidth]{Chap5/plots/size_dist_5.pdf}}
   \subfigure[]{\includegraphics[width=0.65\linewidth]{Chap5/plots/size_dist_22.pdf}}
-\caption[Size distribution of identified clusters at 5 seconds and 22 seconds.]{Size distribution of identified clusters at 5 seconds in plot (a) and 22 seconds in plot (b).}
+\caption[Size distribution of identified clusters at 5 and 22 seconds.]{Size distribution of identified clusters at 5 and 22 seconds. Subplot (a) and (b) are for 5 seconds and 22 seconds, respectively.}
 \label{Chap:Al/Vac:fig:size_distr}
 \end{figure}
 \endgroup
@@ -107,7 +107,7 @@ Atomistic pictures of those clusters can be found in Figure \ref{Chap:Al/Vac:fig
   \centering
   \subfigure[]{\includegraphics[width=0.65\linewidth]{Chap5/plots/size_control_long.eps}}
   \subfigure[]{\includegraphics[width=0.65\linewidth]{Chap5/plots/bond_MgZn_long.eps}}
-\caption[Cluster size and Mg-Zn bonds change for the first 22 seconds.]{Cluster size and Mg-Zn bonds change for the first 22 seconds. (a) The number of Al, Mg, and Zn atoms in all identified clusters vs. time. (b) The number of Mg-Zn bonds across the structure (both matrix and clusters) vs. time.}
+\caption[Cluster size and Mg-Zn bonds change for the first 22 seconds.]{Cluster size and Mg-Zn bonds change for the first 22 seconds. Subplot (a) The number of Al, Mg, and Zn atoms in all identified clusters vs. time. Subplot (b) The number of Mg-Zn bonds across the structure (both matrix and clusters) vs. time.}
 \label{Chap:Al/Vac:fig:long}
 \end{figure}
 \endgroup
@@ -134,7 +134,7 @@ To setup the simulation for sensitivity tests, we use \ac{LSKMC} method with $st
 
 \begin{table}[!htbp]
 \centering
-\caption[Sensitivity analyses of different $\varepsilon_{i-X}$.]{Sensitivity analyses of different $\varepsilon_{i-X}$ in Equation \ref{Chap:Al/Vac:eq:offset_calculation}. In the table, the number of different element types in all identified clusters are listed using $size_{critical}$ of 3(4) and $bond_{critical}$ of 3(4).}
+\caption[Sensitivity analyses of different $\varepsilon_{i-X}$ in Equation \ref{Chap:Al/Vac:eq:offset_calculation}.]{Sensitivity analyses of different $\varepsilon_{i-X}$ in Equation \ref{Chap:Al/Vac:eq:offset_calculation}. In the table, the number of different element types in all identified clusters are listed using $size_{critical}$ of 3(4) and $bond_{critical}$ of 3(4).}
 \label{Chap:Al/Vac:tab:pseudo1}
 \begin{tabular}{cccccccc}
 \\
@@ -165,7 +165,7 @@ setup & $\varepsilon_{Al-X}$  & $\varepsilon_{Mg-X}$  & $\varepsilon_{Zn-X}$ & A
 %   \subfigure[control, species]{\includegraphics[width=0.49\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
   \subfigure[$\varepsilon_{Al-X} = -0.05$, species]{\includegraphics[width=0.49\linewidth]{Chap5/plots/element_jpg/00002.jpg}}
 
-\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test using $size_{critical}$ of 3 and $bond_{critical}$ of 3. (a), (c) : $\varepsilon_{Al-X} = 0.05$, which is setup \#1 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (b), (d) : $\varepsilon_{Al-X} = -0.05$, which is setup \#2 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (a) and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (b) and (d) are colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
+\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test using $size_{critical}$ of 3 and $bond_{critical}$ of 3.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Al-X}$ sensitivity test using $size_{critical}$ of 3 and $bond_{critical}$ of 3. (a), (c) : $\varepsilon_{Al-X} = 0.05$, which is setup \#1 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (b), (d) : $\varepsilon_{Al-X} = -0.05$, which is setup \#2 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (a) and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (b) and (d) are colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
 \label{Chap:Al/Vac:fig:sens_Al}
 \end{figure}
 \endgroup
@@ -181,7 +181,7 @@ setup & $\varepsilon_{Al-X}$  & $\varepsilon_{Mg-X}$  & $\varepsilon_{Zn-X}$ & A
 %   \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
   \subfigure[$\varepsilon_{Mg-X} = -0.05$, species]{\includegraphics[width=0.49\linewidth]{Chap5/plots/element_jpg/00004.jpg}}
 
-\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test using $size_{critical}$ of 3 and $bond_{critical}$ of 3. (a), (c) : $\varepsilon_{Mg-X} = 0.05$, which is setup \#3 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (b), (d) : $\varepsilon_{Mg-X} = -0.05$, which is setup \#4 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (a) and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (b) and (d) are colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
+\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test using $size_{critical}$ of 3 and $bond_{critical}$ of 3.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Mg-X}$ sensitivity test using $size_{critical}$ of 3 and $bond_{critical}$ of 3. (a), (c) : $\varepsilon_{Mg-X} = 0.05$, which is setup \#3 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (b), (d) : $\varepsilon_{Mg-X} = -0.05$, which is setup \#4 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (a) and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (b) and (d) are colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
 \label{Chap:Al/Vac:fig:sens_Mg}
 \end{figure}
 \endgroup
@@ -197,7 +197,7 @@ setup & $\varepsilon_{Al-X}$  & $\varepsilon_{Mg-X}$  & $\varepsilon_{Zn-X}$ & A
 %   \subfigure[control]{\includegraphics[width=0.32\linewidth]{Chap5/plots/element_jpg/00000.jpg}}
   \subfigure[$\varepsilon_{Zn-X} = -0.05$, species]{\includegraphics[width=0.49\linewidth]{Chap5/plots/element_jpg/00006.jpg}}
 
-\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test using $size_{critical}$ of 3 and $bond_{critical}$ of 3. (a), (c) : $\varepsilon_{Zn-X} = 0.05$, which is setup \#5 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (b), (d) : $\varepsilon_{Zn-X} = -0.05$, which is setup \#6 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (a) and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (b) and (d) are colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
+\caption[Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test using $size_{critical}$ of 3 and $bond_{critical}$ of 3.]{Atomistic pictures of 108,000 atoms for $\varepsilon_{Zn-X}$ sensitivity test using $size_{critical}$ of 3 and $bond_{critical}$ of 3. (a), (c) : $\varepsilon_{Zn-X} = 0.05$, which is setup \#5 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (b), (d) : $\varepsilon_{Zn-X} = -0.05$, which is setup \#6 in Table \ref{Chap:Al/Vac:tab:pseudo1}. (a) and (c) are colored by cluster size. The color mapping from dark blue to red is ranked by the cluster size in descending order. (b) and (d) are colored by atom species. Light green, dark green, red, and blue atoms are Al, Mg, Zn, and pseudo atoms respectively. And small gray sticks are bonds between atoms.}
 \label{Chap:Al/Vac:fig:sens_Zn}
 \end{figure}
 \endgroup
